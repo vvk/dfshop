@@ -1,0 +1,79 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+    <div class="list-div" id="listDiv">
+	<table cellspacing='1' cellpadding='3' id='list-table'>
+		<tr>
+			<th>支付方式名称</th>
+			<th>支付费用</th>
+			<th>排序</th>
+			<th>是否启用</th>
+			<th>操作</th>
+		</tr>
+        
+        <if condition="$pay neq ''">
+        <volist name='pay' id='vo'>
+        <tr id="{$vo.id}">
+            <td>{$vo.pay_name}</td>
+            <td>{$vo.pay_fee}</td>
+            <td>{$vo.sort_order}</td>
+            <td>
+                <if condition="$vo.enabled eq '1'">
+					<img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor: pointer;" onclick="payToggle(this,{$vo.id},this)" />
+				<else />
+					<img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor: pointer;" onclick="payToggle(this,{$vo.id},this)"/>
+				</if>
+            </td>
+            <td>
+                <a href="__APP__/System/editPay/id/{$vo.id}" title="编辑"><img src="__PUBLIC__/Images/icon_edit.gif" /></a>&nbsp;
+					<a href="javascript:void()" onclick="delPay('{$vo.id}')" title="删除"><img src="__PUBLIC__/Images/icon_drop.gif" /></a>
+            </td>
+        </tr>
+        </volist>
+        <else/>
+        <tr><td colspan="5">没有查询到任何记录</td></tr>
+        </if>
+	</table>
+</div>
+<include file="PUblic:pagefooter" />
+<script type="text/javascript">
+    function payToggle(obj, id){
+        loading();
+        var url = '__APP__/System/payToggle';
+        var data = {id:id};
+        $.post(url, data, function(data){
+            if(data == '1'){
+				var reg = /no.gif/;
+				if(reg.test(obj.src)){
+					obj.src = "__PUBLIC__/Images/yes.gif";
+				}else{
+					obj.src = "__PUBLIC__/Images/no.gif";
+				}
+				
+			}else{
+				alert('修改失败');
+			}	
+            complete_loading();
+        })        
+    }
+    
+    /* 删除支付方式 */
+    function delPay(id){
+        var con = confirm("您真的要删除此支付方式吗？");
+		if(!con){
+			return;
+		}
+        loading();
+        var url = '__APP__/System/delPay';
+        var data = {id:id};
+        $.post(url, data, function(data){
+            if(data == 'success'){
+                $("#"+id).remove();
+            }else{
+                alert(data);
+            }
+            complete_loading();
+        })
+    }
+</script>

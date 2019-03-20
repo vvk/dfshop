@@ -1,0 +1,59 @@
+
+<div class="footer">
+	<div class="footerBox">
+		<div class="footerBanner">
+			<ul>
+				<li><b class="ico ensure"></b><span>正品保障</span></li>
+				<li><b class="ico heart"></b><span>用心服务</span></li>
+				<li><b class="ico shipping"></b><span>配货迅速</span></li>
+			</ul>
+		</div>
+		<div class="footerNav">
+			<volist name='bottomLink' id='vo'>
+				<dl>
+					<dt>{$vo.cat_name}</dt>
+					<volist name='vo.article' id='item'>
+					<dd><a href="/article-{$item.id}.html" target="_blank" title="{$item.title}">{$item.title}</a></dd>
+					</volist>
+				</dl>				
+			</volist>
+			
+
+		</div>
+	
+		<div class="flink">
+			<ul>
+                <volist name='flink' id='vo'>
+                    <li><a href="{$vo.link_url}" title="{$vo.link_name}" target="_blank">{$vo.link_name}</a></li>
+                </volist>
+			</ul>
+		</div>
+		<div class="copuRight">
+			<p>CopyRight© 东方商城2014，All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;
+			<if condition="$serviceEmail">
+				服务邮箱：<a href='mailto:{$serviceEmail}'>{$serviceEmail}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			</if>
+			{$stats_code}</p>
+		</div>
+		<div class="credit">
+			<ul>
+				<li><img src="__PUBLIC__/Images/credit1.png" /></li>
+				<li><img src="__PUBLIC__/Images/credit2.png" /></li>
+				<li><img src="__PUBLIC__/Images/credit3.png" /></li>
+				<li><img src="__PUBLIC__/Images/credit4.jpg" /></li>
+				<li><img src="__PUBLIC__/Images/credit5.gif" /></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="scrollTop" >
+	    <div class="level-2"></div>
+	    <div class="level-3" title='TOP'></div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Js/goTop.js"></script>
+</div>
+<script type='text/javascript'>
+	$(function(){
+		$('.footerNav dl:last').css('border','none');
+	})
+</script>

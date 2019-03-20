@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/special.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.lazyload.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("img.lazy").show().lazyload({ //页面加载完毕运行
+			effect : "fadeIn",         //淡入效果
+	　　　　　　　threshold : 100,        // 提前200像素加载
+	　　　　　　　failurelimit : 0,         //随机加载10张不在范围内图片
+	　　　　　　　skip_invisible : false      //设置为display：none 的图片 也加载   false否  True是
+		});
+		
+		 $("img").lazyload({
+       		  event : "sporty"
+     	});
+	});
+	
+</script>
+<body>
+	<include file="Public:header" />
+	
+	<div class="search1">
+		<div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>>{$crumbs}
+		</div>
+	
+		<div class="searchCon">
+			<div class='leftSearch left'>
+				<div class="allCategory"><span>所有分类</span></div>
+				<div class='floor1' style='margin-bottom:20px;'>
+					<include file='Public:category'/>
+					<div style='height:20px;float:left;'>&nbsp;</div>
+					<include file="Public:leftGoods" />
+				</div>
+				</div>
+				
+			</div>
+			<div class="rightSearch right">
+				<if condition="$cat_goods">
+				<ul class='searchList'>		
+					<volist name='cat_goods' id='vo'>			
+						<li>
+							<dl>
+								<dd><a href='/goods-{$vo.id}.html' target='_blank'><img src="{$host}{$vo.goods_thumb}"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" title='{$vo.goods_name}' alt='{$vo.goods_name}' class='lazy transitionAll'/></a></dd>
+								<dt>
+									<p class='goodsName'><a href='/goods-{$vo.id}.html' target='_blank'  title='{$vo.goods_name}'><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class='price'>
+										东方价：<span>￥{$vo.shop_price}</span>
+										<strike>￥{$vo.market_price}</strike>
+									</p>
+									<p class='count'>
+										<span class='sales left'>销量：<em>{$vo.sale_number}</em></span>
+										<span class='comment right'><em>{$vo.commentCount}</em>人已评价</span>
+									</p>
+								</dt>
+							</dl>
+						</li>	
+					</volist>				
+				</ul>
+				<div class="page2">{$page_list}</div>
+				<else/>
+					<div class='noGodos'>您搜索的商品不存在</div>
+				</if>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			/*分类树*/
+			$(".floor1 .cat li[class='catList']").hover(function(){			
+				var k = $(".floor1 .cat li[class='catList']").index($(this));
+				var length = $(".floor1 .cat li[class='catList']").length;
+				if(k == 0){
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg2.png) no-repeat center center","border-right":"none"});
+				}else if(k == (length-1)){
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg3.png) no-repeat center center","border-right":"none"});
+				}else{
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg1.png) no-repeat center center","border-right":"none"});	
+				}	
+				$(".floor1 .cat li[class='catList']").eq(k).children('span').css("background","url(__PUBLIC__/Images/arror02.png) no-repeat center center");
+				$(this).find(".subMenu").show()
+			},function(){
+				var k = $(".floor1 .cat li[class='catList']").index($(this));
+				$(".floor1 .cat li[class='catList']").eq(k).css({"background":"none","border-right":"2px solid #E60012"});		
+				$(".floor1 .cat li[class='catList']").eq(k).children('span').css("background","url(__PUBLIC__/Images/arror01.png) no-repeat center center");
+				$(this).find(".subMenu").hide();
+			});
+			
+		})
+		
+	</script>
+	
+	<div class='clear'></div>
+	<include file="Public:footer" />
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<!-- 鍒嗙被鏍�-->
+<div class="cat">
+	<ul>
+        <volist name='category' id='vo'>
+            <li class="catList" style="padding-left: 20px;">
+                <volist name='vo.cat' id='cat'>
+                    <a href="/category-{$cat.id}-tree.html" target="_blank">{$cat.cat_name}</a>
+                </volist><span></span>
+                <div class="subMenu">
+                    <ul>
+                        <volist name='vo.goods' id='goods'>
+                            <li><a href="/goods-{$goods.id}.html" target="_blank" title='{$goods.goods_name}'>{$goods.goods_name}</a></li>
+                        </volist>
+                    </ul>
+                </div>
+            </li>
+        </volist>
+      </ul>
+</div>

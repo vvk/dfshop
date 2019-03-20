@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="confirmOrder">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>我的购物车</span>
+		</div>
+        
+        <div class="process">
+            <span class="process1">我的购物车</span>
+            <span class="process2">确认订单信息</span>
+            <span class="process3">提交订单成功</span>
+        </div>
+        
+        <div class="cartBox">
+            <div class="cartTitle">
+                <span class="left">商品列表</span>
+                <a href="/Cart" class="right">修改</a>
+            </div>
+           
+            <table border="0" cellspace="0">
+                <tr>
+                    <th style="border-left:1px dotted #ddd;">商品名称</th>
+                    <th>本店价</th>
+                    <th>市场价</th>
+                    <th>购买数量</th>
+                    <th style="border-right:1px dotted #ddd;">小计</th>
+                </tr>
+				<volist name='cart' id='vo'>
+					<tr>
+	                    <td style="border-left:1px dotted #ddd;"><a href="/Goods/index/id/{$vo.goods_id}" target="_blank" title='{$vo.goods_name}'>{$vo.goods_name}</a></td>
+	                    <td>￥{$vo.shop_price}</td>
+	                    <td>￥{$vo.market_price}</td>
+	                    <td>{$vo.goods_number}</td>
+	                    <td  style="border-right:1px dotted #ddd;">￥{$vo.money}</td>
+	                </tr>
+				</volist>
+                <tr>
+                    <td colspan="5" style="border-right:1px dotted #ddd;border-left:1px dotted #ddd;text-align:right;"><p class="cartInfo">共计商品&nbsp;<span>{$count}</span>&nbsp;件，共计&nbsp;<span>￥{$totalPay}</span></p></td>
+                </tr>
+            </table>
+            
+            <form method="post"  action="__APP__/Cart/submitOrder" onsubmit='return checkOrderForm()'>
+            <div class="cartTitle" style="margin-top: 30px;">
+                <span class="left">收货地址</span>
+                <a href="/User/address" class="right">修改</a>
+            </div>
+            <div class="shippingAddress">
+                <div class="addressList">
+                    <span>{$address.consignee}&nbsp;&nbsp;&nbsp;{$address.phone}&nbsp;&nbsp;&nbsp;{$address.address}</span>
+                </div>
+            </div>
+            
+            <div class="cartTitle" style="margin-top: 30px;">
+                <span class="left">配送方式</span>
+            </div>
+            <div class="express">
+                <table border="0" cellspace="0">
+                    <tr>
+                        <th style="width: 150px;border-left:1px dotted #ddd;">配送物流</th>
+                        <th style="width: 300px;">运费</th>
+                        <th style="border-right:1px dotted #ddd;">备注信息</th>
+                    </tr>
+					<volist name='shipping' id='vo'>
+						 <tr>
+	                        <td style="border-left:1px dotted #ddd;">
+	                            <input type="radio" name="express" value='{$vo.id}'/>{$vo.shipping_name}
+	                        </td>
+	                        <td>￥{$vo.shipping_fee}</td>
+	                        <td style="border-right:1px dotted #ddd;" class="note"></td>
+	                    </tr>
+					</volist>
+            </table>
+            </div>
+            
+            <div class="cartTitle" style="margin-top: 30px;">
+                <span class="left">支付方式</span>
+            </div>
+            <div class="payment">
+                <table border="0" cellspace="0">
+                    <tr>
+                        <th  style="border-left:1px dotted #ddd;width:150px;">支付方式</th>
+                        <th style="width: 300px;">手续费用</th>
+                        <th style="border-right:1px dotted #ddd;">备注信息</th>
+                    </tr>
+					<volist name='payment' id='vo'>
+						<tr>
+	                        <td  style="border-left:1px dotted #ddd;">
+	                            <input type='radio' name="payment" value='{$vo.id}'/>{$vo.pay_name}
+	                        </td>
+	                        <td>￥{$vo.pay_fee}</td>
+	                        <td class="note" style="border-right:1px dotted #ddd;">{$vo.pay_desc}</td>
+	                    </tr>
+					</volist>
+                </table>
+            </div>
+            
+            <div class="cartTitle" style="margin-top: 30px;">
+                <span class="left">其他信息</span>
+            </div>
+            <div class="otherInfo">
+                <p>您的帐户中共可用积分有<span>{$integral}</span>，每<span>100</span>积分可抵<span>1</span>分钱。</p>
+                <p class="integral">
+                    <input type="checkbox" name="useIntegral" value="1" id="useIntegral" />
+                    <span>使用积分</span>      
+                </p>
+                <p class="integralNum">
+                    <span style="font-weight: normal;color:#333">使用</span><input type="input" value="" id="integral" name="integral" onkeyup="forCash(this)" />可抵现金<span id="integralNum">￥0.00</span>
+                </p>
+            </div>
+            
+            <div class="cartTitle" style="margin-top: 30px;">
+                <span class="left">费用总计</span>
+            </div>
+            <div class="expense">
+                <p>您使用积分<span id="expenseIntegral">0</span>，可抵现金<span id="forCash">0.00</span>元</p>
+                <p>商品总金额为<span id='goodsValue'>{$totalPay}</span>元，实际应付金额为<span id='trueCost'>{$totalPay}</span>元</p>
+                <input type="submit" name="submit" value="提交订单" id="submitBtn" />
+            </div>
+			</form>
+        </div>
+    </div>    
+	<script type="text/javascript">
+        $(function(){
+            $('.shippingAddress .addressList:first').find('span').css('color','#333')
+            $('.shippingAddress .addressList input').click(function(k){
+                $('.shippingAddress .addressList').find('span').css('color','#666');
+                if($(this).attr('checked') == 'checked'){
+                    $(this).siblings('span').css('color','#333');
+                }     
+            });
+            
+            $("#useIntegral").click(function(){
+                if($(this).attr('checked') == 'checked'){
+                    $(".integralNum").animate({'height':'30px'})
+                }else{
+                    $(".integralNum").animate({'height':'0px'});
+					$('#expenseIntegral').text(0);
+					$('#forCash').text(0);
+                    $("#integral").val('');;
+					$('#trueCost').text($('#goodsValue').text());
+                    $("#integralNum").text('￥0.00');
+                }  
+            })
+        })   
+    </script>
+    <include file="Public:footer" />
+</body>
+</html>
+

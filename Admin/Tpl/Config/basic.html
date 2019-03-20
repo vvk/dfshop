@@ -1,0 +1,507 @@
+<table width="90%" id="basic-table" style="display:none">
+   <!--<tr>
+        <td class="label" valign="top">{$config.lang.name}:</td>
+        <td>
+            <select name="{$config.lang.code}">
+                  <option value="en_us">en_us</option>
+				  <option value="zh_cn" selected>zh_cn</option>
+				  <option value="zh_tw">zh_tw</option> 
+		    </select><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>-->
+	<tr>
+        <td class="label" valign="top">{$config.icp_number.name}:</td>
+        <td>
+            <input name="{$config.icp_number.code}" type="text" value="{$config.icp_number.value}" size="40" />
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.icp_file.name}:</td>
+        <td>
+            <input name="{$config.icp_file.code}" type="file" value="" size="40" />
+        	<empty name="config.icp_file.value">
+				<img src="__PUBLIC__/Images/no.gif" />
+			<else />	
+				<img src="__PUBLIC__/Images/yes.gif" />&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="del_img('{$config.icp_file.code}')" title="删除"><img src="__PUBLIC__/Images/icon_trash.gif"/></a>
+			</empty>
+		</td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.watermark.name}:</td>
+        <td>
+            <input name="{$config.watermark.code}" type="file" value="" size="40" />
+        	<empty name="config.watermark.value">
+				<img src="__PUBLIC__/Images/no.gif" />
+			<else />	
+				<img src="__PUBLIC__/Images/yes.gif" />&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="del_img('{$config.watermark.code}')" title="删除"><img src="__PUBLIC__/Images/icon_trash.gif"/></a>
+			</empty>
+		</td>
+    </tr>
+    </div>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.watermark_place.name}:</td>
+        <td>
+            <eq name="config.watermark_place.value" value="0">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="0" />
+			</eq>无
+			<eq name="config.watermark_place.value" value="1">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="1" />
+			</eq>左上 
+			<eq name="config.watermark_place.value" value="2">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="2" />
+			</eq>上中 
+			<eq name="config.watermark_place.value" value="3">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="3" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="3" />
+			</eq>右上
+			<eq name="config.watermark_place.value" value="4">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="4" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="4" />
+			</eq>左中
+			<eq name="config.watermark_place.value" value="5">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="5" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="5" />
+			</eq>中
+			<eq name="config.watermark_place.value" value="6">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="6" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="6" />
+			</eq>右中
+			<eq name="config.watermark_place.value" value="7">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="7" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="7" />
+			</eq>左下
+			<eq name="config.watermark_place.value" value="8">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="8" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="8" />
+			</eq>中下
+			<eq name="config.watermark_place.value" value="9">
+            	<input type="radio" checked name="{$config.watermark_place.code}" value="9" />
+			<else />
+				<input type="radio" name="{$config.watermark_place.code}" value="9" />
+			</eq>右下	
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.watermark_alpha.name}:</td>
+        <td>
+            <input name="{$config.watermark_alpha.code}" type="text" value="{$config.watermark_alpha.value}" size="40" />
+        </td>
+    </tr>
+	<!--<tr>
+        <td class="label" valign="top">{$config.use_storage.name}:</td>
+        <td>
+        	<eq name="config.use_storage.value" value="0">
+            	<input type="radio" checked name="{$config.use_storage.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.use_storage.code}" value="0" />
+			</eq>否			
+			<eq name="config.use_storage.value" value="1">
+            	<input type="radio" checked name="{$config.use_storage.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.use_storage.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>-->
+	<tr>
+        <td class="label" valign="top">{$config.market_price_rate.name}:</td>
+        <td>
+            <input name="{$config.market_price_rate.code}" type="text" value="{$config.market_price_rate.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.rewrite.name}:</td>
+        <td>
+        	<eq name="config.rewrite.value" value="0">
+            	<input type="radio" checked name="{$config.rewrite.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.rewrite.code}" value="0" />
+			</eq>禁用			
+			<eq name="config.rewrite.value" value="1">
+            	<input type="radio" checked name="{$config.rewrite.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.rewrite.code}" value="1" />
+			</eq>简单重写
+			<eq name="config.rewrite.value" value="2">
+            	<input type="radio" checked name="{$config.rewrite.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.rewrite.code}" value="2" />
+			</eq>复杂重写<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.integral_name.name}:</td>
+        <td>
+            <input name="{$config.integral_name.code}" type="text" value="{$config.integral_name.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.integral_scale.name}:</td>
+        <td>
+            <input name="{$config.integral_scale.code}" type="text" value="{$config.integral_scale.value}" size="40" /><br>
+			<span class="notice-span">每100积分可抵多少元现金</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.integral_percent.name}:</td>
+        <td>
+            <input name="{$config.integral_percent.code}" type="text" value="{$config.integral_percent.value}" size="40" /><br>
+			<span class="notice-span">每100元商品最多可以使用多少元积分，此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.sn_prefix.name}:</td>
+        <td>
+            <input name="{$config.sn_prefix.code}" type="text" value="{$config.sn_prefix.value}" size="40" />
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.comment_check.name}:</td>
+        <td>
+            <eq name="config.comment_check.value" value="0">
+            	<input type="radio" checked name="{$config.comment_check.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.comment_check.code}" value="0" />
+			</eq>不需要审核		
+			<eq name="config.comment_check.value" value="1">
+            	<input type="radio" checked name="{$config.comment_check.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.comment_check.code}" value="1" />
+			</eq>需要审核
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.no_picture.name}:</td>
+        <td>
+            <input name="{$config.no_picture.code}" type="file" />
+			<empty name="config.no_picture.value">
+				<img src="__PUBLIC__/Images/no.gif" />
+			<else />	
+				<img src="__PUBLIC__/Images/yes.gif" />&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="del_img('{$config.no_picture.code}')" title="删除"><img src="__PUBLIC__/Images/icon_trash.gif"/></a>
+			</empty>
+        </td>
+    </tr>
+	<tr style="display:none;">
+        <td class="label" valign="top">{$config.stats_code.name}:</td>
+        <td>
+            <textarea name="{$config.stats_code.code}" cols="40" rows="5">{$config.stats_code.value}</textarea>
+        </td>
+    </tr>
+	<tr style="display:none;">
+        <td class="label" valign="top">{$config.cache_time.name}:</td>
+        <td>
+        	<input name="{$config.cache_time.code}" type="text" value="{$config.cache_time.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+		</td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.register_points.name}:</td>
+        <td><input name="{$config.register_points.code}" type="text" value="{$config.register_points.value}" size="40" /></td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.enable_gzip.name}:</td>
+        <td>
+            <eq name="config.enable_gzip.value" value="0">
+            	<input type="radio" checked name="{$config.enable_gzip.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.enable_gzip.code}" value="0" />
+			</eq>禁用	
+			<eq name="config.enable_gzip.value" value="1">
+            	<input type="radio" checked name="{$config.enable_gzip.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.enable_gzip.code}" value="1" />
+			</eq>启用<br>
+			<span class="notice-span">启用Gzip模式可压缩发送页面大小，加快网页传输。需要php支持Gzip。如果已经用Apache等对页面进行Gzip压缩，请禁止该功能，此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.top10_time.name}:</td>
+        <td>
+            <eq name="config.top10_time.value" value="0">
+            	<input type="radio" checked name="{$config.top10_time.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.top10_time.code}" value="0" />
+			</eq>所有		
+			<eq name="config.top10_time.value" value="1">
+            	<input type="radio" checked name="{$config.top10_time.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.top10_time.code}" value="1" />
+			</eq>一年
+			<eq name="config.top10_time.value" value="2">
+            	<input type="radio" checked name="{$config.top10_time.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.top10_time.code}" value="2" />
+			</eq>半年
+			<eq name="config.top10_time.value" value="3">
+            	<input type="radio" checked name="{$config.top10_time.code}" value="3" />
+			<else />
+				<input type="radio" name="{$config.top10_time.code}" value="3" />
+			</eq>三个月
+			<eq name="config.top10_time.value" value="4">
+            	<input type="radio" checked name="{$config.top10_time.code}" value="4" />
+			<else />
+				<input type="radio" name="{$config.top10_time.code}" value="4" />
+			</eq>一个月			
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.timezone.name}:</td>
+        <td>
+        	<select name="{$config.timezone.code}">
+            	<option value="-12">(GMT -12:00) Eniwetok, Kwajalein</option>
+				<option value="-11">(GMT -11:00) Midway Island, Samoa</option>
+				<option value="-10">(GMT -10:00) Hawaii</option>
+				<option value="-9">(GMT -09:00) Alaska</option>
+				<option value="-8">(GMT -08:00) Pacific Time (US &amp; Canada), Tijuana</option>
+				<option value="-7">(GMT -07:00) Mountain Time (US &amp; Canada), Arizona</option>
+				<option value="-6">(GMT -06:00) Central Time (US &amp; Canada), Mexico City</option>
+				<option value="-5">(GMT -05:00) Eastern Time (US &amp; Canada), Bogota, Lima, Quito</option>
+				<option value="-4">(GMT -04:00) Atlantic Time (Canada), Caracas, La Paz</option>
+				<option value="-3.5">(GMT -03:30) Newfoundland</option>
+				<option value="-3">(GMT -03:00) Brassila, Buenos Aires, Georgetown, Falkland Is</option>
+				<option value="-2">(GMT -02:00) Mid-Atlantic, Ascension Is., St. Helena</option>
+				<option value="-1">(GMT -01:00) Azores, Cape Verde Islands</option>
+				<option value="0">(GMT) Casablanca, Dublin, Edinburgh, London, Lisbon, Monrovia</option>
+				<option value="1">(GMT +01:00) Amsterdam, Berlin, Brussels, Madrid, Paris, Rome</option>
+				<option value="2">(GMT +02:00) Cairo, Helsinki, Kaliningrad, South Africa</option>
+				<option value="3">(GMT +03:00) Baghdad, Riyadh, Moscow, Nairobi</option>
+				<option value="3.5">(GMT +03:30) Tehran</option>
+				<option value="4">(GMT +04:00) Abu Dhabi, Baku, Muscat, Tbilisi</option>
+				<option value="4.5">(GMT +04:30) Kabul</option>
+				<option value="5">(GMT +05:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+				<option value="5.5">(GMT +05:30) Bombay, Calcutta, Madras, New Delhi</option>
+				<option value="5.75">(GMT +05:45) Katmandu</option>
+				<option value="6">(GMT +06:00) Almaty, Colombo, Dhaka, Novosibirsk</option>
+				<option value="6.5">(GMT +06:30) Rangoon</option>
+				<option value="7">(GMT +07:00) Bangkok, Hanoi, Jakarta</option>
+				<option value="8" selected>(GMT +08:00) Beijing, Hong Kong, Perth, Singapore, Taipei</option>
+				<option value="9">(GMT +09:00) Osaka, Sapporo, Seoul, Tokyo, Yakutsk</option>
+				<option value="9.5">(GMT +09:30) Adelaide, Darwin</option>
+				<option value="10">(GMT +10:00) Canberra, Guam, Melbourne, Sydney, Vladivostok</option>
+				<option value="11">(GMT +11:00) Magadan, New Caledonia, Solomon Islands</option>
+				<option value="12">(GMT +12:00) Auckland, Wellington, Fiji, Marshall Island</option>   
+			</select><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.upload_size_limit.name}:</td>
+        <td>
+            <select name="{$config.upload_size_limit.code}">
+            	<option value="-1">服务默认设置</option>
+				<option value="0">0KB</option>
+				<option value="64" selected>64KB</option>
+				<option value="128">128KB</option>
+				<option value="256">256KB</option>
+				<option value="512">512KB</option>
+				<option value="1024">1MB</option>
+				<option value="2048">2MB</option>
+				<option value="4096">4MB</option>      
+            </select><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.cron_method.name}:</td>
+        <td>
+            <eq name="config.cron_method.value" value="0">
+            	<input type="radio" checked name="{$config.cron_method.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.cron_method.code}" value="0" />
+			</eq>否
+			<eq name="config.cron_method.value" value="1">
+            	<input type="radio" checked name="{$config.cron_method.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.cron_method.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.comment_factor.name}:</td>
+        <td>
+            <eq name="config.comment_factor.value" value="0">
+            	<input type="radio" checked name="{$config.comment_factor.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.comment_factor.code}" value="0" />
+			</eq>所有	用户	
+			<eq name="config.comment_factor.value" value="1">
+            	<input type="radio" checked name="{$config.comment_factor.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.comment_factor.code}" value="1" />
+			</eq>仅登录用户
+			<eq name="config.comment_factor.value" value="2">
+            	<input type="radio" checked name="{$config.comment_factor.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.comment_factor.code}" value="2" />
+			</eq>有过一次以上购买行为用户
+			<eq name="config.comment_factor.value" value="3">
+            	<input type="radio" checked name="{$config.comment_factor.code}" value="3" />
+			<else />
+				<input type="radio" name="{$config.comment_factor.code}" value="3" />
+			</eq>仅购买过该商品用户<br>
+			<span class="notice-span">选取较高的评论条件可以有效的减少垃圾评论的产生。只有用户订单完成后才认为该用户有购买行为，此功能还没有启用</span>		
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.enable_order_check.name}:</td>
+        <td>
+            <eq name="config.enable_order_check.value" value="0">
+            	<input type="radio" checked name="{$config.enable_order_check.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.enable_order_check.code}" value="0" />
+			</eq>否
+			<eq name="config.enable_order_check.value" value="1">
+            	<input type="radio" checked name="{$config.enable_order_check.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.enable_order_check.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.default_storage.name}:</td>
+        <td>
+            <input name="{$config.default_storage.code}" type="text" value="{$config.default_storage.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.bgcolor.name}:</td>
+        <td>
+            <input name="{$config.bgcolor.code}" type="text" value="{$config.bgcolor.value}" size="40" /><br>
+			<span class="notice-span">颜色请以#FFFFFF格式填写</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.visit_stats.name}:</td>
+        <td>
+            <eq name="config.visit_stats.value" value="0">
+            	<input type="radio" checked name="{$config.visit_stats.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.visit_stats.code}" value="0" />
+			</eq>否
+			<eq name="config.visit_stats.value" value="1">
+            	<input type="radio" checked name="{$config.visit_stats.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.visit_stats.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.send_mail_on.name}:</td>
+        <td>
+            <eq name="config.send_mail_on.value" value="0">
+            	<input type="radio" checked name="{$config.send_mail_on.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.send_mail_on.code}" value="0" />
+			</eq>否
+			<eq name="config.send_mail_on.value" value="1">
+            	<input type="radio" checked name="{$config.send_mail_on.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.send_mail_on.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">启用该选项登录后台时，会自动发送邮件队列中尚未发送的邮件，此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.auto_generate_gallery.name}:</td>
+        <td>
+            <eq name="config.auto_generate_gallery.value" value="0">
+            	<input type="radio" checked name="{$config.auto_generate_gallery.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.auto_generate_gallery.code}" value="0" />
+			</eq>否
+			<eq name="config.auto_generate_gallery.value" value="1">
+            	<input type="radio" checked name="{$config.auto_generate_gallery.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.auto_generate_gallery.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;"> 
+        <td class="label" valign="top">{$config.retain_original_img.name}:</td>
+        <td>
+            <eq name="config.retain_original_img.value" value="0">
+            	<input type="radio" checked name="{$config.retain_original_img.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.retain_original_img.code}" value="0" />
+			</eq>否
+			<eq name="config.retain_original_img.value" value="1">
+            	<input type="radio" checked name="{$config.retain_original_img.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.retain_original_img.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.member_email_validate.name}:</td>
+        <td>
+            <eq name="config.member_email_validate.value" value="0">
+            	<input type="radio" checked name="{$config.member_email_validate.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.member_email_validate.code}" value="0" />
+			</eq>否
+			<eq name="config.member_email_validate.value" value="1">
+            	<input type="radio" checked name="{$config.member_email_validate.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.member_email_validate.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.message_board.name}:</td>
+        <td>
+            <eq name="config.message_board.value" value="0">
+            	<input type="radio" checked name="{$config.message_board.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.message_board.code}" value="0" />
+			</eq>否
+			<eq name="config.message_board.value" value="1">
+            	<input type="radio" checked name="{$config.message_board.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.message_board.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.message_check.name}:</td>
+        <td>
+            <eq name="config.message_check.value" value="0">
+            	<input type="radio" checked name="{$config.message_check.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.message_check.code}" value="0" />
+			</eq>需要审核
+			<eq name="config.message_check.value" value="1">
+            	<input type="radio" checked name="{$config.message_check.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.message_check.code}" value="1" />
+			</eq>不需要审核<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+</table>
+
+
+	

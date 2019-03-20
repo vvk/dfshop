@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="resetPwd">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>找回密码</span>
+		</div>
+        <div class="forgetPwdCon">
+            <div class='forgetPwdTitle'>
+    			<span class='userLogin left'>找回密码</span>
+    		</div>
+            
+            <div class="resetPwdCon">
+                 <dl>
+                    <dt>新密码：</dt>
+                    <dd>
+                        <input type="password" name="password" id="password" />
+                        <span class="warning left" id="passwordWarning"><b class="ico2 left"></b><font class='left'></font></span>
+                    </dd>                                     
+                 </dl>
+                 <dl>
+                    <dt>确认密码：</dt>
+                    <dd>
+                        <input type="password" name="repassword" id="repassword" />
+                        <span class="warning left" id="repasswordWarning"><b class="ico2 left"></b><font class='left'></font></span>
+                    </dd>
+                 </dl>
+                 <input type="button" name="submit" id="submitBtn" value="提交" onclick="resetPwd()" />
+           
+        </div>
+    </div>    
+    <script type="text/javascript">
+        $(function(){
+            $("#password").blur(function(){
+                var val = $(this).val();
+                var repass = $("#repassword").val();
+                var error = '';
+                if(!val){
+                    error = '密码不能为空';
+                }else if(val.length<6 || val.length>20){
+                    error = '密码长度为6-20位';
+                }
+                
+                if(error){
+                    $("#passwordWarning font").text(error);
+                    $("#passwordWarning").show();
+                }
+                
+                if(repass){
+                    if(val != repass){
+                        $("#repasswordWarning font").text('两次输入的密码不一致');
+                        $("#repasswordWarning").show();
+                    }else{
+                        $("#repasswordWarning font").text('');
+                        $("#repasswordWarning").hide();
+                    }
+                }
+            })   
+            $("#password").focus(function(){
+                $("#passwordWarning").hide().find('font').text('');
+            })
+            
+            $("#repassword").blur(function(){
+                var val = $(this).val();
+                var pass = $("#password").val();
+                var error = '';
+                if(!val){
+                    error = '确认密码不能为空';
+                }else if(val != pass){
+                    error = '两次输入的密码不一致';
+                }
+                if(error){
+                    $("#repasswordWarning font").text(error);
+                    $("#repasswordWarning").show();
+                }
+            })
+            $("#repassword").focus(function(){
+                $("#repasswordWarning font").text('');
+                $("#repasswordWarning").hide();
+            }) ;     
+        })
+        
+        function resetPwd(){
+            var pass = $("#password").val();
+            var repass = $("#repassword").val(); 
+            var passError = repassError = '';
+            
+            if(!pass){
+                passError = '密码不能为空';
+            }else if(pass.length<6 || pass.length>20){
+                passError = '密码长度为6-20位';
+            }   
+            
+            if(!repass){
+                repassError = '确认密码不能为空';
+            }else if(pass != repass){
+                repassError = '两次输入的密码不一致';
+            }
+            
+            if(passError){
+                $("#passwordWarning font").text(passError);
+                $("#passwordWarning").show();
+            }
+            
+            if(repassError){
+                $("#repasswordWarning font").text(repassError);
+                $("#repasswordWarning").show();
+            }
+
+            if(passError || repassError){
+                return false;
+            }
+            
+            var url = '__APP__/User/setNewPwd';
+            var data = {password:pass};
+            $.post(url, data, function(data){
+                if(data == '4'){
+                    alert('修改成功，请登录');
+                    window.location.href = "/login.html";
+                }else{
+                    alert('修改失败');
+                    $("#password").val('');
+                    $("#repassword").val('');
+                }
+            }); 
+        }
+    </script>
+	<include file="Public:footer" />
+</body>
+</html>
+

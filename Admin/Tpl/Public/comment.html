@@ -1,0 +1,66 @@
+<include file="Public:pageheader" />
+<link href="__PUBLIC__/Css/admin.css" rel="stylesheet" type="text/css" />
+
+<form method="POST" action="comment_manage.php?act=batch_drop" name="listForm" onsubmit="return confirm_bath()">
+	<div class="list-div" id="listDiv">
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+			    <th>编号</th>
+			    <th>用户名</th>
+			    <th>评论对象</th>
+			    <th>IP地址</th>
+			    <th>评论时间</th>
+			    <th>状态</th>
+			    <th>操作</th>
+			</tr>
+			<if condition="$comment_list">
+			<volist name="comment_list" id='vo'>
+			<tr align="center">
+				<td>{$vo.id}</td>
+				<td>{$vo.username}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.ip_address}</td>
+				<td>{$vo.comment_time}</td>
+				<td>{$vo.status}</td>
+				<td>
+					<a href="__APP__/Common/commentInfo/type/{$vo.comment_type}/id/{$vo.id}">查看详情</a> |
+     				<a href="javascript:void(0)" onclick="del_comment({$vo.id})">删除</a>
+				</td>
+			</tr>
+			</volist>
+			<else />
+			<tr><td colspan='7' align="center">没有查询到任何记录</td></tr>
+			</if>
+			
+
+			<tr><td colspan="7"><div class="page"><p>{$page_list}</p></div></td></tr>
+		</table>
+	</div>
+</form>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	//删除指点id下的评论
+	function del_comment(id){
+		var con = confirm('您确定要删除这条评论吗?');
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/Common/delComment";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			complete_loading();
+			if(data == '1'){ //没有接收到要删除评论的id
+				alert('删除时出现错误');
+			}else if(data == 2){
+				alert('要删除的评论不存在');
+				window.location.reload();
+			}else if(data == '0'){				
+				window.location.reload();
+			}
+		}, 'TEXT');
+	}
+
+
+</script>

@@ -1,0 +1,88 @@
+<include file="Public:pageheader" />
+<link href="__PUBLIC__/Css/admin.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+<div class="list-div" id="listDiv">
+  	<table cellpadding="3" cellspacing="1">
+		<tr>
+	    <th>编号</th>
+	    <th>商品名称</th>
+	    <th>商品货号</th>
+	    <th>商品价格</th>
+	    <th>操作</th>
+	  <tr>
+	  <if condition="$goods_list">
+	  <volist name="goods_list" id="goods">
+	  	<tr>
+	  		<td>{$goods.id}</td>
+			<td>{$goods.goods_name}</td>
+			<td>{$goods.goods_sn}</td>
+			<td>{$goods.shop_price}</td>
+			<td>
+				<a href="javascript:reduction_goods({$goods.id})" title="还原">还原</a>&nbsp;|&nbsp;
+			    <a href="javascript:delete_goods({$goods.id})" title='删除'>删除</a>
+			</td>
+		</tr>
+	  </volist>
+	  <else />
+	  <tr><td colspan="5">没有找到任何记录</td></tr>
+	  </if>
+	  <tr>
+	  	<td colspan='5'>
+	  		 <div class="page"><p>{$page_list}</p></div>	
+	  	</td>
+	  </tr>
+	
+ 	</table>
+</div>
+<script type="text/javascript">
+	//还原回收站的商品
+	function reduction_goods(id){
+		var con = confirm('您确定要把该商品还原吗？');
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/Goods/remove/action/reduction/id"+id;
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+				window.location.reload();
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('商品还原失败');
+			}
+		},'TEXT');
+	}
+
+	//删除回收站的商品
+	function delete_goods(id){
+		var con = confirm('您确定真的要删除该商品吗？删除后将无法恢复!');
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/Goods/remove/action/delete/id"+id;
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+				window.location.reload();
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('删除失败');
+			}
+		},"text");
+	}
+
+
+</script>
+
+
+<include file="Public:pagefooter" />

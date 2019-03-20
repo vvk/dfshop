@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="checkQuestion">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>找回密码</span>
+		</div>
+        <div class="forgetPwdCon">
+            <div class='forgetPwdTitle'>
+    			<span class='userLogin left'>找回密码</span>
+    		</div>
+            
+            <div class="checkQuestionCon">
+                <p>请输入密码提示问题答案</p>
+                <dl>
+                    <dt>密码提示问题：</dt>
+                    <dd>{$question}</dd>
+                </dl>
+                <dl>
+                    <dt>密码问题答案：</dt>
+                    <dd>
+                        <input type="text" name="question" id="question" value="" />
+                        <span class="left error"><b class="ico2 left"></b><font class="left"></font></span>
+                    </dd>
+                </dl>
+                <input type="button" name="submit" value="提交" id="submitBtn" onclick="submitQuestion()" />
+            </div>
+           
+        </div>
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>
+

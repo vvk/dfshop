@@ -1,0 +1,76 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+
+</style>
+
+<div class="tab-div">  
+    <div id="tabbody-div">
+         <form enctype="multipart/form-data" action="__APP__/System/saveShipping" method="post" name="theForm" onsubmit="return validate();">
+         <table width="90%" id="general-table" align="center">
+             <tr>
+                <td class="label">配送名称:</td>
+                <td>
+                	<input type="text" name="shipping_name" id="shipping_name" value="{$shipping.shipping_name}"  size="30" />
+               </td>
+             </tr>
+             <tr>
+                <td class="label">配送费用:</td>
+                <td>
+                	<input type="text" name="shipping_fee" id="shipping_fee" value="{$shipping.shipping_fee}"  size="10" />
+               </td>
+             </tr>
+             <tr>
+                <td class="label">配送描述:</td>
+                <td>
+                    <textarea name="shipping_desc" cols="50" rows="5">{$shipping.shipping_desc}</textarea>
+               </td>
+             </tr>
+             <tr>
+                <td class="label">排序:</td>
+                <td>
+                    <input type="text" name="sort_order" id="sort_order" value="{$shipping.sort_order}"  size="10" />
+               </td>
+             </tr>
+             <tr>
+                <td class="label">是否启用:</td>
+                <td>
+                    <eq name="shipping.enabled" value="0">
+                    	<input type="radio" checked name="enabled" value="0" />
+        			<else />
+        				<input type="radio" name="enabled" value="0" />
+        			</eq>否			
+        			<eq name="shipping.enabled" value="1">
+                    	<input type="radio" checked name="enabled" value="1" />
+        			<else />
+        				<input type="radio" name="enabled" value="1" />
+        			</eq>是
+               </td>
+             </tr>
+            </table>
+            <div class="button-div">
+              <input type="hidden" name="id" value="{$shipping.id}" />
+              <input type="hidden" name="action" value="{$action}" />
+              <input type="reset" value="重置" class="button"  style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+               <input type="submit" value="确定" class="button"  style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+   	       </div>
+        </form>
+    </div>
+</div>
+<include file="PUblic:pagefooter" />
+<script type="text/javascript">
+    function validate(){
+       var shipping_name = $('#shipping_name').val();
+       var shipping_fee = $('#shipping_fee').val();
+       var error = '';
+       if(!shipping_name){
+          error += '配送名称不能为空\n';
+       }
+       if(!shipping_fee){
+          error += '配送费用不能为空';
+       }
+       if(error){
+           alert(error);
+           return false;
+       }
+    }
+</script>

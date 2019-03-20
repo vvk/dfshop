@@ -1,0 +1,31 @@
+<table width="90%" id="wap-table" style="display:none">
+    <tr>
+        <td class="label" valign="top">{$config.wap_config.name}:</td>
+        <td>
+        	<eq name="config.wap_config.value" value="0">
+            	<input type="radio" checked name="{$config.wap_config.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.wap_config.code}" value="0" />
+			</eq>否		
+			<eq name="config.wap_config.value" value="1">
+            	<input type="radio" checked name="{$config.wap_config.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.wap_config.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能只支持简体中文且只在中国大陆区有效，此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.wap_logo.name}: </td>
+        <td>
+            <input name="{$config.wap_logo.code}" type="file" value="{$config.wap_logo.value}" size="40" />
+			<empty name="config.wap_logo.value">
+				<img src="__PUBLIC__/Images/no.gif" />
+			<else />	
+				<img src="__PUBLIC__/Images/yes.gif" />&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="del_img('{$config.wap_logo.code}')" title="删除"><img src="__PUBLIC__/Images/icon_trash.gif"/></a>
+			</empty><br>
+			<span class="notice-span">为了更好地兼容各种手机类型，LOGO 最好为png图片，此功能还没有启用</span>			
+        </td>
+    </tr>
+</table>

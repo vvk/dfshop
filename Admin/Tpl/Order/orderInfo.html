@@ -1,0 +1,153 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+
+<div class="list-div" style="margin-bottom: 5px">
+    <table width="100%" cellpadding="3" cellspacing="1">
+        <tr>
+            <th colspan="4">基本信息</th>
+       </tr>
+       <tr>
+        <td width="18%"><div align="right"><strong>订单编号：</strong></div></td>
+        <td width="34%" style="text-align:left">{$order.order_sn}</td>
+        <td width="15%"><div align="right"><strong>订单状态：</strong></div></td>
+        <td style="text-align:left" id="status">{$order.status}</td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>收货：</strong></div></td>
+        <td style="text-align:left">{$order.consignee}</td>
+        <td><div align="right"><strong>下单时间：</strong></div></td>
+        <td style="text-align:left">{$order.addTime}</td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>配送方式：</strong></div></td>
+        <td style="text-align:left">{$order.shipping_name}</td>
+        <td><div align="right"><strong>付款时间：</strong></div></td>
+        <td style="text-align:left"><if condition="$order.payTime neq ''">{$order.payTime}<else/>未付款</if></td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>支付方式：</strong></div></td>
+        <td style="text-align:left">{$order.pay_name}</td>
+        <td><div align="right"><strong>发货时间：</strong></div></td>
+        <td style="text-align:left" id="shippingTtime"><if condition="$order.shippingTime neq ''">{$order.shippingTime}<else/>未发货</if></td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>商品金额：</strong></div></td>
+        <td style="text-align:left">{$order.goods_amounts}</td>
+        <td><div align="right"><strong>收货 时间：</strong></div></td>
+        <td style="text-align:left"><if condition="$order.confirmTime neq ''">{$order.confirmTime}<else/>未确认</if></td>
+      </tr>
+	  
+	  <tr>
+        <td><div align="right"><strong>实付金额：</strong></div></td>
+        <td style="text-align:left">{$order.pay_fee}</td>
+        <td><div align="right"><strong>使用积分：</strong></div></td>
+		<td style="text-align:left">{$order.integral}</td>
+      </tr>
+	  
+      <tr>
+        <td></td>
+        <td></td>
+        <td colspan="2" id="shipments">
+            <if condition="$order.shipping_status eq 0">
+            <div class="button-div">
+      <input name="submit" type="submit" value="发货" class="button" style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" onclick="shipments({$order.id})" />
+    </div>
+    </if>
+        </td>
+      </tr>
+    </table>
+</div>    
+
+<div class="list-div" style="margin-bottom: 5px">
+    <table width="100%" cellpadding="3" cellspacing="1">
+        <tr>
+            <th colspan="4">收货人信息</th>
+       </tr>
+       <tr>
+        <td width="18%"><div align="right"><strong>收货人：</strong></div></td>
+        <td width="32%" style="text-align:left">{$order.consignee}</td>
+        <td width="15%"><div align="right"><strong>电子邮箱：</strong></div></td>
+        <td style="text-align:left">{$order.email}</td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>手机：</strong></div></td>
+        <td style="text-align:left">{$order.phone}</td>
+        <td><div align="right"><strong>邮政编码：</strong></div></td>
+        <td style="text-align:left">{$order.zipcode}</td>
+      </tr>
+      <tr>
+        <td><div align="right"><strong>收货地址：</strong></div></td>
+        <td style="text-align:left" colspan="3">[ {$order.province_region} {$order.city_region}  ]&nbsp;&nbsp;&nbsp;{$order.address}</td>        
+      </tr>
+    </table>
+</div> 
+
+<div class="list-div" style="margin-bottom: 5px">
+    <table width="100%" cellpadding="3" cellspacing="1">
+        <tr>
+            <th colspan="5">商品信息</th>
+       </tr>
+       <tr>
+        <th>商品编号</th>
+        <th>商品名称</th>
+        <th>商品价格</th>
+        <th>商品数量</th>
+        <th>小计</th>
+      </tr>
+      
+      <if condition="$order.goods neq ''">
+      <volist name='order.goods' id='vo'>
+      <tr>
+        <td>{$vo.goods_sn}</td>
+        <td><a href="http://www.dongfang.com/index.php/Goods/index/id/{$vo.goods_id}" target="_blank">{$vo.goods_name}</a></td>
+        <td>{$vo.shop_price}</td>
+        <td>{$vo.goods_number}</td>
+        <td>{$vo.money}</td>      
+      </tr>
+      </volist>
+      <else/>
+      <tr><td colspan="5">没有查询到任何记录</td></tr>
+      </if>
+    </table>
+</div> 
+<include file="PUblic:pagefooter" />
+<script type="text/javascript">
+    function shipments(id){
+        loading();
+        var data = {id:id};
+        var url = '__APP__/Order/shipments';
+        $.post(url, data, function(data){
+            if(data == '0'){
+                alert('系统错误');
+            }else if(data == '5'){
+                alert('该订单已取消');   
+            }else if(data == '3'){
+                alert('操作失败');
+            }else if(data == '2'){
+                alert('该订单还未付款，不能进行发货');
+            }else if(data == '1'){
+                alert('您操作的订单不存在');
+            }else{
+                alert('操作成功');
+                $("#shippingTtime").html(data);
+                $("#status").html("<font color='red'>已完成</font>");
+                $("#shipments").html('');
+            }            
+            complete_loading()
+        })
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

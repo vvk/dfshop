@@ -1,0 +1,36 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+
+<div class="list-div" id="listDiv">
+	<table cellspacing='1' cellpadding='3' id='list-table'>
+		<tr>
+			<th>订单号</th>
+			<th>收货人</th>
+			<th>下单时间</th>
+			<th>商品总金额</th>
+			<th>应付金额</th>
+			<th>订单状态</th>
+			<th>操作</th>
+		</tr>
+
+		<if condition="$order">
+			<volist name="order" id="vo">
+				<tr id={$vo.id}>
+					<td>{$vo.order_sn}{$vo.id}</td>
+					<td>{$vo.consignee}</td>
+					<td>{$vo.time}</td>
+					<td>{$vo.goods_amounts}</td>
+                    <td>{$vo.pay_fee}</td>
+                    <td>{$vo.status}</td>
+                    <td><a href="__APP__/Order/orderInfo/id/{$vo.id}" title="查看">查看</a></td>
+				</tr>
+			</volist>	
+			<tr><td colspan="7"><div class="page"><p>{$page_list}</p></div>	</td></tr>
+		<else />
+			<tr><td colspan="6">没有查询到任何记录</td></tr>
+		</if>
+	</table>
+</div>
+<include file="PUblic:pagefooter" />

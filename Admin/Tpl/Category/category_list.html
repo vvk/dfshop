@@ -1,0 +1,86 @@
+<include file="Public:pageheader" />
+<div class="list-div" id="listDiv">
+	<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+	  <tr>
+	    <th>分类名称</th>
+	    <th>商品数量</th>
+	    <th>是否显示</th>
+	    <th>排序</th>
+	    <th>操作</th>
+	  </tr>
+	  
+	  <volist name='category' id='vo'>
+		  <tr align="center" rel="{$vo.level}" id="{$vo.id}" class="category_list" id="{$vo.id}">
+		  	<td align="left" class="cat_name">
+		  		<if condition="$vo.children eq 1">
+		  			<img src="__PUBLIC__/Images/menu_minus.gif" width="9" onclick="rowClicked({$vo.id},{$vo.level})" height="9" border="0" style="cursor:pointer;margin-left:{$vo['level']}em" />
+				<else />
+					<img src="__PUBLIC__/Images/menu_minus.gif" width="9" onclick="rowClicked({$vo.id},{$vo.level})" height="9" border="0" style="cursor:pointer;margin-left:{$vo['level']}em" />
+				</if>
+				<a href="__APP__/Goods/index/id/{$vo.id}">{$vo.cat_name}</a></td>
+			<td>{$vo.goods_number}</td>
+			<td>
+				<if condition="$vo.is_show eq 1">
+					<img src="__PUBLIC__/Images/yes.gif" />
+				<else />
+					<img src="__PUBLIC__/Images/no.gif" />
+				</if>
+			</td>
+			<td>{$vo.sort_order}</td>
+			<td>
+				<a href='__URL__/categoryInfo/id/{$vo.id}'>编辑</a>&nbsp;|&nbsp;
+				<a href='javascript:void' onclick="remove_category({$vo.id})">删除</a>
+			</td>
+		  </tr>
+	   </volist>
+	 </table>
+</div>
+<script type="text/javascript"> 
+	 $(function(){
+	 	$("#list-table .category_list").hover(function(){
+			var i = $("#list-table .category_list").index($(this));
+			$("#list-table .category_list").eq(i).css('background','red');
+		});
+	 });
+
+	//点击显示、隐藏下级分类
+	function rowClicked(id, level){
+		var cat = $('#'+id).nextAll();	
+		if($('#'+id+' .cat_name img').attr('src') == "__PUBLIC__/Images/menu_minus.gif"){
+			$('#'+id+' .cat_name img').attr('src','__PUBLIC__/Images/menu_plus.gif');					
+		}else{
+			$('#'+id+' .cat_name img').attr('src','__PUBLIC__/Images/menu_minus.gif');
+		}
+		
+		for(var i=0; i<cat.length; i++){	
+			if(cat.eq(i).attr('rel') >level){
+				cat.eq(i).toggle(0);
+			}else{
+				return;
+			}	
+		}
+	}
+	
+	//删除指定分类
+	function remove_category(id){
+		var con = confirm("您真的确定要删除吗？删除后就无法恢复。");
+		if(!con){
+			return;
+		}
+	
+		loading();
+		var url = '__APP__/Category/delCategory/id/'+id;
+		var data = {id:id};
+		$.post(url, data, function(data){
+			complete_loading();
+			if(data.state == 0){ //删除成功
+				$("#"+id).remove()
+			}else{  //删除失败
+				alert(data.info);
+			}
+		},"JSON");
+	}
+	
+</script>
+
+<include file="Public:pagefooter" />

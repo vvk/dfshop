@@ -1,0 +1,54 @@
+<table width="90%" id="sms-table" style="display:none">
+     <tr>
+        <td class="label" valign="top">{$config.sms_shop_mobile.name}:</td>
+        <td>
+            <input name="{$config.sms_shop_mobile.code}" type="text" value="{$config.sms_shop_mobile.value}" size="40" /><br>
+			<span class="notice-span">请先注册手机短信服务再填写手机号码</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.sms_order_placed.name}:</td>
+        <td>
+        	<eq name="config.sms_order_placed.value" value="0">
+            	<input type="radio" checked name="{$config.sms_order_placed.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.sms_order_placed.code}" value="0" />
+			</eq>不发短信			
+			<eq name="config.sms_order_placed.value" value="1">
+            	<input type="radio" checked name="{$config.sms_order_placed.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.sms_order_placed.code}" value="1" />
+			</eq>发短信
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.sms_order_payed.name}:</td>
+        <td>
+        	<eq name="config.sms_order_payed.value" value="0">
+            	<input type="radio" checked name="{$config.sms_order_payed.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.sms_order_payed.code}" value="0" />
+			</eq>不发短信			
+			<eq name="config.sms_order_payed.value" value="1">
+            	<input type="radio" checked name="{$config.sms_order_payed.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.sms_order_payed.code}" value="1" />
+			</eq>发短信
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.sms_order_shipped.name}:</td>
+        <td>
+        	<eq name="config.sms_order_shipped.value" value="0">
+            	<input type="radio" checked name="{$config.sms_order_shipped.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.sms_order_shipped.code}" value="0" />
+			</eq>不发短信			
+			<eq name="config.sms_order_shipped.value" value="1">
+            	<input type="radio" checked name="{$config.sms_order_shipped.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.sms_order_shipped.code}" value="1" />
+			</eq>发短信
+        </td>
+    </tr>
+</table>

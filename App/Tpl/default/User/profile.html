@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/time-plug-in.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/time-plug-in.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="userInfo">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        
+        <div class="userInfoCon">
+            <div class="userCenterTitle"><span>我的信息</span></div>
+            
+            <div class="infoBox">
+                <form method="post" action="__APP__/User/saveInfo" onsubmit="return checkForm()">
+                <if condition="$Think.session.user.openid eq '' && $Think.session.user.weibo_uid eq ''">
+                <dl>
+                    <dt>邮箱：</dt>
+                    <dd>
+                        <input type="text" value="{$Think.session.user.email}" disabled />
+                        <span class="userWarning" style="display:block;" id="emailWarning">
+                            <b class="ico2"></b><font>邮箱不能修改，用于登录</font>
+                        </span>
+                    </dd>
+                </dl>
+                </if>
+                <dl>
+                    <dt>用户名：</dt>
+                    <dd>
+                        <if condition="$Think.session.user.openid eq '' && $Think.session.user.weibo_uid eq ''">
+                        <input type="text" name="username" value="{$Think.session.user.user_name}" id="username"/>
+                        <else/>
+                        <input type="text" name="username" value="{$Think.session.user.user_name}"  readonly="readonly"/>
+                        </if>
+                        
+                        <span class="userWarning" id="usernameWarning"><b class="ico2"></b><font></font></span>
+                    </dd>
+                </dl>   
+                <dl class="sex">
+                    <dt>性别：</dt>
+                    <dd class="sex">
+                         <eq name="Think.session.user.sex" value="0">
+                        <input type="radio" name="sex" id="secret" value="0" checked="checked"><span class="secretText">保密</span>
+                        <else/>
+                        <input type="radio" name="sex" id="secret" value="0" /><span class="secretText">保密</span>
+                        </eq>
+                        <eq name="Think.session.user.sex" value="1">
+                        <input type="radio" name="sex" id="men" value="1" checked="checked"/><span class="menText">男</span>    
+                        <else/>
+                        <input type="radio" name="sex" id="men" value="1" /><span class="menText">男</span>    
+                        </eq>                        
+                        <eq name="Think.session.user.sex" value="2">
+                        <input type="radio" name='sex' id="women" value="2" checked="checked"/><span class="womentext">女</span>
+                        <else/>
+                        <input type="radio" name='sex' id="women" value="2"/><span class="womentext">女</span>
+                        </eq>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt>出生日期：</dt>
+                    <dd>
+                        <input type="text" name="birthday" class="time" value="{$Think.session.user.birthday}" id="special_start_time" id="birthday"/>
+                        <span class="userWarning" id="birthdayWarning"><b class="ico2"></b><font></font></span>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt>QQ：</dt>
+                    <dd>
+                        <input type="text" name="qq" value="{$Think.session.user.qq}" id="qq"/>
+                        <span class="userWarning" id="qqWarning"><b class="ico2"></b><font></font></span>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt>手机：</dt>
+                    <dd>
+                        <input type="text" name="phone" value="{$Think.session.user.phone}" id="phone"/>
+                        <span class="userWarning" id="phoneWarning"><b class="ico2"></b><font></font></span>
+                    </dd>
+                </dl> 
+                <if condition="$Think.session.user.openid eq ''">
+                <dl class="question">
+                    <dt>密码提示问题：</dt>
+                    <dd>
+                        <select name='question_id' id="question_id" class="left">
+                            <option value="0">密码提示问题</option>
+                            <volist name="question" id="vo">
+                                <option value="{$vo.id}"  <eq name="vo.id" value="$Think.session.user.question_id">selected</eq>>{$vo.question}</option>
+                            </volist>
+                        </select>
+                        <span class="userWarning" id="question_idWarning" style="display:inherit; margin-top:2px;"><b class="ico2"></b><font>可以用来找回密码</font></span>
+                    </dd>
+                </dl>  
+                <dl>
+                    <dt>密码问题答案：</dt>
+                    <dd>
+                        <input type="text" name="answer" value="{$Think.session.user.answer}" id="answer"/>
+                        <span class="userWarning" id="answerWarning"><b class="ico2"></b><font></font></span>
+                    </dd>
+                </dl> 
+                </if>
+                <dl class="zone">
+                    <dt>所在地区：</dt>
+                    <dd>
+                        <select name="province" id="province" onchange="regionChange(this.value,1)">
+                           <volist name='province' id='vo'>
+                                 <option value="{$vo.id}"  <eq name="vo.id" value="$Think.session.user.province">selected</eq>>{$vo.region_name}</option>
+                           </volist>
+                        </select>
+                        
+                        <select name="city" id="city"  onchange="regionChange(this.value,2)">
+                            <volist name='city' id='vo'>
+                                 <option value="{$vo.id}"  <eq name="vo.id" value="$Think.session.user.city">selected</eq>>{$vo.region_name}</option>
+                           </volist>
+                        </select>
+                        
+                        <select name="district" id="district">
+                            <volist name='district' id='vo'>
+                                 <option value="{$vo.id}" <eq name="vo.id" value="$Think.session.user.district">selected</eq>>{$vo.region_name}</option>
+                           </volist>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="userBtn">
+                    <dt>&nbsp;</dt>
+                    <dd>
+                        <input type="reset" value="重　置" id="resetBtn" onclick="resetFun()" />
+                        <input type="submit" value="保　存" id="submitBtn"/>
+                    </dd>
+                </dl>
+                </form>
+            </div>
+        </div>
+        <script>
+            $(function(){
+              /* 日历插件 */
+         	  $('input.time:text').datepicker();
+            
+              /* 用户名获得焦点 */
+              $('#username').focus(function(){    
+                 $(this).css('border','1px solid #DBDBDB')
+                 $(this).siblings('.userWarning').find('font').text('用户名长度为6-20位').css('color','#999');
+                 $(this).siblings('.userWarning').find('b').css("background-position",'0 -119px')
+                 $('#usernameWarning').show();
+              });
+            
+              /* 用户名推动焦点 */
+              $("#username").blur(function(){
+              
+                 var username = $(this).val(); 
+                 var error = '';
+                 
+                 if(!username){
+                    error = '用户名不能为空';
+                 }else if(username.length<6 || username.length>20){
+                    error = '用户名为6-20位字母或数字';
+                 }else if(!isLetNum(username)){
+                    error = '用户名必须为字母或数字';
+                 }
+                
+                 if(error){
+                    $(this).css('border','1px solid #f00')
+                    $(this).siblings('#usernameWarning').find('font').text(error).css('color','red');
+                    $(this).siblings('#usernameWarning').find('b').css("background-position",'0 1px');
+                    $(this).siblings('#usernameWarning').show();
+                 }else{
+                    $(this).siblings('#usernameWarning').find('font').text('用户名可用').css('color','#999');
+                    $(this).siblings('#usernameWarning').find('b').css('background-position','0 -199px')
+                 } 
+              });
+              
+               /* qq获得焦点 */
+              $('#qq').focus(function(){
+                $(this).css('border','1px solid #DBDBDB');
+                $('#qqWarning').hide();
+              });
+             
+              /* qq推动焦点 */
+              $("#qq").blur(function(){
+                var qq = $(this).val();
+                var qqError = '';
+                if(!qq){
+                    return false;
+                }
+                
+                if(!isNum(qq)){
+                    qqError = 'QQ号码必须为数字';
+                }else if(qq.length<5 || qq.length>12){
+                    qqError = 'QQ号码长度为5-12位';
+                }
+                
+                if(qqError){
+                    $(this).css('border','1px solid #f00');
+                    $(this).siblings('#qqWarning').find('font').text(qqError).css('color','red');
+                    $(this).siblings('#qqWarning').find('b').css("background-position",'0 1px');
+                    $(this).siblings('#qqWarning').show();
+                }else{
+                    $(this).siblings('#qqWarning').find('font').text('QQ号码可用').css('color','#999');
+                    $(this).siblings('#qqWarning').find('b').css('background-position','0 -199px');
+                    $(this).siblings('#qqWarning').show();
+                 }
+              });
+              
+              /* 手机号获得焦点 */
+              $("#phone").focus(function(){
+                 $(this).css('border','1px solid #DBDBDB');
+                 $('#phoneWarning').hide();
+              })
+              
+              /* 手机号驇焦点 */
+              $("#phone").blur(function(){
+                 var phone = $(this).val();
+                 var phoneError = '';
+                 
+                 if(!phone){
+                    return false;
+                 }
+                 
+                 if(phone.length != 11){
+                    phoneError = '手机号码长度不正确';
+                 }else if(!isPhone(phone)){
+                    phoneError = '手机号码码格式不正确';   
+                 }
+                 
+                 if(phoneError){
+                    $(this).css('border','1px solid #f00');
+                    $(this).siblings('#phoneWarning').find('font').text(phoneError).css('color','red');
+                    $(this).siblings('#phoneWarning').find('b').css("background-position",'0 1px');
+                    $(this).siblings('#phoneWarning').show();
+                 }else{
+                    $(this).siblings('#phoneWarning').find('font').text('手机号码可用').css('color','#999');
+                    $(this).siblings('#phoneWarning').find('b').css('background-position','0 -199px');
+                    $(this).siblings('#phoneWarning').show();
+                 }                
+              })
+              
+              $('#question_id').change(function(){
+                   if($(this).val() == 0){
+                       $("#answer").css('border','1px solid #DBDBDB');
+                       $('#answerWarning').hide();
+                   }else{
+                       var answer = $("#answer").val();
+                       var answerError = '';
+                       
+                       if(!answer){
+                           answerError = '密码提示问题答案不能为空';
+                       }
+                       
+                       if(answerError){
+                            $("#answer").css('border','1px solid #f00');
+                            $("#answer").siblings('#answerWarning').find('font').text(answerError).css('color','red');
+                            $("#answer").siblings('#answerWarning').find('b').css("background-position",'0 1px');
+                            $("#answer").siblings('#answerWarning').show();
+                       }else{
+                            $("#answer").siblings('#answerWarning').find('font').text('').css('color','#999');
+                            $("#answer").siblings('#answerWarning').find('b').css('background-position','0 -199px');
+                            $("#answer").siblings('#answerWarning').show(); 
+                       }
+                       
+                   }                
+              })
+              
+              /* 密码提示问题答案获得焦点 */
+              $('#answer').focus(function(){
+                   $(this).css('border','1px solid #DBDBDB');
+                   $('#answerWarning').hide();
+              })
+              
+              /* 密码提示问题答案失去焦点 */
+              $("#answer").blur(function(){
+                   var answer = $(this).val();
+                   var question_id = $('#question_id').val();
+                   var answerError = '';
+                   
+                   if(question_id == 0){
+                       return false;
+                   }
+                   
+                   if(!answer){
+                       answerError = '密码提示问题答案不能为空';
+                   }
+                   
+                   if(answerError){
+                        $(this).css('border','1px solid #f00');
+                        $(this).siblings('#answerWarning').find('font').text(answerError).css('color','red');
+                        $(this).siblings('#answerWarning').find('b').css("background-position",'0 1px');
+                        $(this).siblings('#answerWarning').show();
+                   }else{
+                        $(this).siblings('#answerWarning').find('font').text('').css('color','#999');
+                        $(this).siblings('#answerWarning').find('b').css('background-position','0 -199px');
+                        $(this).siblings('#answerWarning').show(); 
+                   }
+              });
+        	});
+
+            /* 重置 */
+            function resetFun(){
+                $("input[type='text']").css('border','1px solid #DBDBDB');
+                $('.userWarning').hide();
+                $("#question_idWarning").show();
+                $("#emailWarning").show();
+            }
+            
+            /* 保存信息 */
+            function checkForm(){
+                var username = $("#username").val();
+                var qq = $("#qq").val();
+                var question_id = $('#question_id').val();
+                var answer = $("#answer").val();
+                var phone = $("#phone").val();
+                var usernameError = qqError = phoneError = answerError = '';
+                var disable = false;
+                          
+                if(!username){
+                    usernameError = '用户名不能为空';
+                }else if(username.length<6 || username.length>20){
+                    usernameError = '用户名长度为6-20位';
+                }else if(!isLetNum(username)){
+                    usernameError = '用户名必须为字母或数字';
+                }
+                if(usernameError){
+                    $("#username").css('border','1px solid #f00')
+                    $("#username").siblings('#usernameWarning').find('font').text(usernameError).css('color','red');
+                    $("#username").siblings('#usernameWarning').find('b').css("background-position",'0 1px');
+                    $("#username").siblings('#usernameWarning').show();
+                    disable = true;
+                }else{
+                    $("#username").siblings('#usernameWarning').find('font').text('用户名可用').css('color','#999');
+                    $("#username").siblings('#usernameWarning').find('b').css('background-position','0 -199px')
+                } 
+                
+                if(phone){
+                    if(!isPhone(phone)){
+                        phoneError = '手机号码格式不正确';
+                    }
+                    
+                    if(phoneError){
+                        $('#phone').css('border','1px solid #f00');
+                        $('#phone').siblings('#phoneWarning').find('font').text(phoneError).css('color','red');
+                        $('#phone').siblings('#phoneWarning').find('b').css("background-position",'0 1px');
+                        $('#phone').siblings('#phoneWarning').show();
+                        disable = true;
+                     }else{
+                        $('#phone').siblings('#phoneWarning').find('font').text('手机号码可用').css('color','#999');
+                        $('#phone').siblings('#phoneWarning').find('b').css('background-position','0 -199px');
+                        $('#phone').siblings('#phoneWarning').show();
+                     }    
+                }
+                
+                if(qq){
+                    if(!isQQ(qq)){
+                        qqError = 'qq号码格式不正确';
+                    }
+                    
+                    if(qqError){
+                        $('#qq').css('border','1px solid #f00');
+                        $('#qq').siblings('#qqWarning').find('font').text(qqError).css('color','red');
+                        $('#qq').siblings('#qqWarning').find('b').css("background-position",'0 1px');
+                        $('#qq').siblings('#qqWarning').show();
+                        disable = true;
+                    }else{
+                        $('#qq').siblings('#qqWarning').find('font').text('QQ号码可用').css('color','#999');
+                        $('#qq').siblings('#qqWarning').find('b').css('background-position','0 -199px');
+                        $('#qq').siblings('#qqWarning').show();
+                     }
+                }
+                
+                if(question_id != 0){
+                    if(!answer){
+                        answerError = '密码提示问题不能为空';
+                    }
+                    
+                    if(answerError){
+                        $("answer").css('border','1px solid #f00');
+                        $("answer").siblings('#answerWarning').find('font').text(answerError).css('color','red');
+                        $("answer").siblings('#answerWarning').find('b').css("background-position",'0 1px');
+                        $("answer").siblings('#answerWarning').show();
+                        disable = true;
+                   }else{
+                        $("answer").siblings('#answerWarning').find('font').text('').css('color','#999');
+                        $("answer").siblings('#answerWarning').find('b').css('background-position','0 -199px');
+                        $("answer").siblings('#answerWarning').show(); 
+                   }
+                    
+                }
+                
+                /*
+            	 *   1、警告  4、成功   5、失败    6、加载
+            	 */
+                 
+                if(disable){
+                    ZENG.msgbox.show('请正确填写信息', 5, 3000);
+			        return false;
+                }        	
+                
+            }
+            
+        </script>
+    
+    
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>
+

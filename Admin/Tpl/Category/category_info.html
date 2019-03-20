@@ -1,0 +1,73 @@
+<include file="Public:pageheader" />
+
+
+<div class="main-div">
+	<form action="__URL__/saveCategory" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+	<table width="100%" id="general-table">
+		<tr>
+	        <td class="label">分类名称:</td>
+	        <td>
+	          <input type='text' name='cat_name' x-webkit-speech id="d1" lang="zh-CN" x-webkit-grammar="bUIltin:search" maxlength="20" value='{$category.cat_name}' size='27' /> <font color="red">*</font>
+	          <span class="notice-span" id=""></span>	
+			</td>
+       </tr>
+	   
+	   <tr>
+        <td class="label">上级分类:</td>
+        <td>
+          <select name="parent_id">
+            <option value="0">顶级分类</option>
+            	{$category.option}
+          </select>
+        </td>
+      </tr>
+
+	 <tr id="measure_unit">
+        <td class="label">排序:</td>
+        <td>
+          <input type="text" name='sort_order' value='{$category.sort_order}' size="12" />
+        </td>
+      </tr>
+	  
+	  <tr id="measure_unit">
+        <td class="label">是否显示:</td>
+        <td>
+          <eq name="category.is_show" value="0">
+            	<input type="radio" checked name="is_show" value="0" />
+			<else />
+				<input type="radio" name="is_show" value="0" />
+			</eq>否			
+			<eq name="category.is_show" value="1">
+            	<input type="radio" checked name="is_show" value="1" />
+			<else />
+				<input type="radio" name="is_show" value="1" />
+			</eq>是
+        </td>
+      </tr>
+	  
+	  <tr id="measure_unit">
+        <td class="label">关键字:</td>
+        <td>
+          <input type='text' name='keywords'  value='{$category.keywords}' size='40' />
+        </td>
+      </tr>
+	  
+	  <tr id="measure_unit">
+        <td class="label">分类描述:</td>
+        <td>
+          <textarea name="cat_desc" cols="40" rows="5">{$category.cat_desc}</textarea>
+        </td>
+      </tr>
+	</table>
+	<div class="button-div">
+		<input type="hidden" name="id" value="{$category.id}" />
+		<input type="hidden" name='action' value="{$action}" />
+        <input type="submit" value="确定" style="cursor:pointer;" />
+        <input type="reset" value="重置" style="cursor:pointer;"/>
+      </div>
+	
+	</form>
+</div>
+
+
+<include file="Public:pagefooter" />

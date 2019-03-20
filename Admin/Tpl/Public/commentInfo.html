@@ -1,0 +1,46 @@
+<include file="Public:pageheader" />
+<div class="main-div">
+  <table width="100%">
+  	  <tr>
+      	<td>
+      	  <b>{$comment.user_name}</b>&nbsp;&nbsp;于&nbsp; &nbsp;{$comment.comment_time}&nbsp;&nbsp;对&nbsp;&nbsp;<b>{$comment.name}</b>&nbsp;&nbsp;发表评论
+    	</td>
+    </tr>
+	<tr><td><hr color="#dadada" size="1"></td></tr>
+	<tr>
+      <td>
+        <div style="overflow:hidden; word-break:break-all;">{$comment.content}</div>
+        <div align="right"><b>评论等级:</b> {$comment.comment_rank}&nbsp;&nbsp;<b>评论IP</b>: {$comment.ip_address}</div>
+      </td>
+    </tr>
+	<tr>
+      <td align="center">
+        
+        <input type="button" onclick="change_show({$comment.id})" title="点击显示或隐藏" value="{$comment.show_status}" class="button" style="height:20px;line-height:20px;background:url(__PUBLIC__/Images/button_bg.gif) repeat-x" />
+    </td>
+	
+   </table>	
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	function change_show(id){
+		loading();
+		var url = "__APP__/Common/commentToggle";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			complete_loading();
+			if(data == '1'){
+				if($('.button').val() == '显示'){
+					$('.button').val('不显示');
+				}else{
+					$('.button').val('显示');
+				}
+			}else{
+				alert('操作失败');
+			}
+		}, 'TEXT');
+	}
+	
+	
+</script>
+

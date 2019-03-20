@@ -1,0 +1,19 @@
+<div class="leafNav" id="leafNav">
+    <div class="centerTitle">会员中心</div>
+    
+    <ul>
+        <li><a href="/user.html" <eq name='menu' value=''>class="currentLeftNav"</eq>>欢迎页</a></li>
+        <li><a href="/profile.html" <eq name='menu' value='profile'>class="currentLeftNav"</eq>>我的信息</a></li>
+        <if condition="$Think.session.user.openid eq ''"><li><a href="/resetPassword.html" <eq name='menu' value='resetPassword'>class="currentLeftNav"</eq>>修改密码</a></li></if>
+        <li><a href="/order.html" <eq name='menu' value='order'>class="currentLeftNav"</eq>>我的订单</a></li>
+        <li><a href="/address.html" <eq name='menu' value='address'>class="currentLeftNav"</eq>>收货地址</a></li>
+        <li><a href="/collect.html" <eq name='menu' value='collect'>class="currentLeftNav"</eq>>我的收藏</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+$(function(){
+    $(".leafNav li:last").find('a').css('border','none');
+})
+float_lay(document, 'leafNav', 8);
+
+</script>

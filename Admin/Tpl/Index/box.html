@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <title>灯箱效果</title>
+
+  <script type='text/javascript' src='__PUBLIC__/Js/jquery-1.7.2.js'></script>
+  <script type='text/javascript' src='__PUBLIC__/Js/lightBox.js'></script>
+  <script type="text/javascript">  
+	window.onload=function(){			
+		var box=new lightBox();
+		//box.show();
+		box.show('这是内容',300,300,'','success',3);
+	}	   
+	   
+  </script>
+
+ </head>
+ <body>   
+ <style type="text/css">
+
+ </style>
+ <!--<div id='light-Box' style='width:300px;height:120px;border:1px solid #ccc;margin:0 auto;'>
+ 	<p id='close_zone'><span id='close' title='关闭'>关闭</span></p>
+ 	<div id='box-zone'>
+ 		<img src='__PUBLIC__/Images/success.png' width='50' height='50' style='display:block;margin-left:30px;float:left' />
+		<p id="info"></p>
+ 	</div>
+ </div>-->
+
+ </body>
+</html>
+  <style type="text/css">
+  	*{margin: 0;padding: 0;}
+  
+	#light-Box #close_zone{height:30px;line-height:30px;border-bottom:1px solid #ccc;background:#eee;}
+	#light-Box #close{float:right;margin-right:10px;color:#666;text-decoration:none;}
+	#light-Box #close:hover{text-decoration:underline;cursor: pointer;color: red}
+	#light-Box #box-zone{height:50px;line-height:50px;margin-top:20px;}
+	#light-Box #info{color:#999;font-size:14px;padding-left:95px;}
+  </style>

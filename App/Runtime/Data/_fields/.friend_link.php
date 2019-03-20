@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'link_name', 2 => 'link_url', 3 => 'link_logo', 4 => 'is_show', 5 => 'sort_order', '_autoinc' => false, '_type' => array ( 'id' => 'smallint(5) unsigned', 'link_name' => 'varchar(255)', 'link_url' => 'varchar(255)', 'link_logo' => 'varchar(255)', 'is_show' => 'tinyint(1)', 'sort_order' => 'tinyint(3) unsigned', ), );?>

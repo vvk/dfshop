@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/dhk.css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/dhk.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="profile">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        
+        <div class="profileCon">
+            <div class="welcome">
+                <span class="loginUser">{$Think.session.user.user_name}</span>&nbsp;您好，欢迎回到&nbsp;<span class="shopName">{$info.shop_name}</span>
+            </div>    
+            <div class="loginInfo">您上次登录的时间为：<span>{$info.last_login_time}</span></div>
+            <div class="loginInfo">您上次登录的IP为：<span>{$info.last_login_ip}</span></div>
+            <div class="loginInfo">您的当前积分：<span>{$info.integral}</span></div>
+            <div class="loginInfo">您的登录次数：<span>{$Think.session.user.visit_count}</span></div>
+            <div class="loginInfo">您的订单总数：<span>{$info.shippingTotal}</span></div>
+            <div class="loginInfo">您的未付款订单数量：<span>{$info.noPayShipping}</span></div>
+            <div class="loginInfo">您的已付款订单数量：<span>{$info.payShipping}</span></div>
+        </div>
+    </div>    
+	<!-- 商店公告start -->
+    <if condition="$user_notice">
+    <div id="messageBoardContainer" style='z-index:999999999'>
+      <div id="messageBoard"> ﻿
+        <div class="wrap">
+          <h2> <span>用户中心公告！！</span> <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a> </h2>
+          <div class="content" style="font-family:Arial;">
+            <p style="position:relative; top:-16px;padding-top:10px"><span>{$user_notice}</span></p>
+          </div>
+        </div>
+        <div class="bg"></div>
+      </div>
+    </div>
+    <a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a> ﻿
+    </if>
+    <!-- 商店公告end -->
+	<script type='text/javascript'>
+		onLoad(function(){
+        	initQuirkyPopup();
+        });
+	</script>
+	<include file="Public:footer" />
+</body>
+</html>
+

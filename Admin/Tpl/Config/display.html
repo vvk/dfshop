@@ -1,0 +1,291 @@
+<table width="90%" id="display-table" style="display:none">
+    <tr>
+        <td class="label" valign="top">{$config.search_keywords.name}:</td>
+        <td>
+            <input name="{$config.search_keywords.code}" type="text" value="{$config.search_keywords.value}" size="40" /><br>
+			<span class="notice-span">搜索关键字</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.time_format.name}:</td>
+        <td>
+            <input name="{$config.time_format.code}" type="text" value="{$config.time_format.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.currency_format.name}:</td>
+        <td>
+            <input name="{$config.currency_format.code}" type="text" value="{$config.currency_format.value}" size="40" /><br>
+			<span class="notice-span">显示商品价格的格式，%s将被替换为相应的价格数字。</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.thumb_width.name}:</td>
+        <td>
+            <input name="{$config.thumb_width.code}" type="text" value="{$config.thumb_width.value}" size="40" />
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.thumb_height.name}:</td>
+        <td>
+            <input name="{$config.thumb_height.code}" type="text" value="{$config.thumb_height.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.image_width.name}:</td>
+        <td>
+            <input name="{$config.image_width.code}" type="text" value="{$config.image_width.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.image_height.name}:</td>
+        <td>
+            <input name="{$config.image_height.code}" type="text" value="{$config.image_height.value}" size="40" /><br>
+			<span class="notice-span">如果您的服务器支持GD，在您上传商品图片的时候将自动将图片缩小到指定的尺寸。</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.top_number.name}:</td>
+        <td>
+            <input name="{$config.top_number.code}" type="text" value="{$config.top_number.value}" size="40" />
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.history_number.name}:</td>
+        <td>
+            <input name="{$config.history_number.code}" type="text" value="{$config.history_number.value}" size="40" />
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.comments_number.name}:</td>
+        <td>
+            <input name="{$config.comments_number.code}" type="text" value="{$config.comments_number.value}" size="40" /><br>
+			<span class="notice-span">显示在商品详情页的用户评论数量。</span>
+        </td>
+    </tr>
+	<tr style='display:none'>
+        <td class="label" valign="top">{$config.bought_goods.name}:</td>
+        <td>
+            <input name="{$config.bought_goods.code}" type="text" value="{$config.bought_goods.value}" size="40" /><br>
+			<span class="notice-span">显示多少个购买此商品的人还买过哪些商品。</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.article_number.name}:</td>
+        <td>
+            <input name="{$config.article_number.code}" type="text" value="{$config.article_number.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.goods_name_length.name}:</td>
+        <td>
+            <input name="{$config.goods_name_length.code}" type="text" value="{$config.goods_name_length.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.price_format.name}:</td>
+        <td>
+            <eq name="config.price_format.value" value="0">
+            	<input type="radio" checked name="{$config.price_format.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="0" />
+			</eq>不处理
+			<eq name="config.price_format.value" value="1">
+            	<input type="radio" checked name="{$config.price_format.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="1" />
+			</eq>保留不为 0 的尾数 
+			<eq name="config.price_format.value" value="2">
+            	<input type="radio" checked name="{$config.price_format.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="2" />
+			</eq>不四舍五入，保留一位小数 
+			<eq name="config.price_format.value" value="3">
+            	<input type="radio" checked name="{$config.price_format.code}" value="3" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="3" />
+			</eq>不四舍五入，不保留小数
+			<eq name="config.price_format.value" value="4">
+            	<input type="radio" checked name="{$config.price_format.code}" value="4" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="4" />
+			</eq>先四舍五入，保留一位小数
+			<eq name="config.price_format.value" value="5">
+            	<input type="radio" checked name="{$config.price_format.code}" value="5" />
+			<else />
+				<input type="radio" name="{$config.price_format.code}" value="5" />
+			</eq>先四舍五入，不保留小数<br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.page_size.name}:</td>
+        <td>
+            <input name="{$config.page_size.code}" type="text" value="{$config.page_size.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display:none">
+        <td class="label" valign="top">{$config.sort_order_type.name}:</td>
+        <td>
+            <eq name="config.sort_order_type.value" value="0">
+            	<input type="radio" checked name="{$config.sort_order_type.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.sort_order_type.code}" value="0" />
+			</eq>按上架时间
+			<eq name="config.sort_order_type.value" value="1">
+            	<input type="radio" checked name="{$config.sort_order_type.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.sort_order_type.code}" value="1" />
+			</eq>按商品价格 
+			<eq name="config.sort_order_type.value" value="2">
+            	<input type="radio" checked name="{$config.sort_order_type.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.sort_order_type.code}" value="2" />
+			</eq>按最后更新时间 
+		</td>
+	</tr>
+	<tr>
+        <td class="label" valign="top">{$config.sort_order_method.name}:</td>
+        <td>
+            <eq name="config.sort_order_method.value" value="0">
+            	<input type="radio" checked name="{$config.sort_order_method.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.sort_order_method.code}" value="0" />
+			</eq>降序排列
+			<eq name="config.sort_order_method.value" value="1">
+            	<input type="radio" checked name="{$config.sort_order_method.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.sort_order_method.code}" value="1" />
+			</eq>升序排列 
+		</td>
+	</tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.show_order_type.name}:</td>
+        <td>
+            <eq name="config.show_order_type.value" value="0">
+            	<input type="radio" checked name="{$config.show_order_type.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_order_type.code}" value="0" />
+			</eq>列表显示
+			<eq name="config.show_order_type.value" value="1">
+            	<input type="radio" checked name="{$config.show_order_type.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_order_type.code}" value="1" />
+			</eq>表格显示
+			<eq name="config.show_order_type.value" value="2">
+            	<input type="radio" checked name="{$config.show_order_type.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.show_order_type.code}" value="2" />
+			</eq>文本显示<br>
+			<span class="notice-span">此功能还没有启用</span>
+		</td>
+	</tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.attr_related_number.name}:</td>
+        <td>
+            <input name="{$config.attr_related_number.code}" type="text" value="{$config.attr_related_number.value}" size="40" /><br>
+			<span class="notice-span">在商品详情页面显示多少个属性关联的商品，此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.goods_gallery_number.name}:</td>
+        <td>
+            <input name="{$config.goods_gallery_number.code}" type="text" value="{$config.goods_gallery_number.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.article_title_length.name}:</td>
+        <td>
+            <input name="{$config.article_title_length.code}" type="text" value="{$config.article_title_length.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.name_of_region_1.name}:</td>
+        <td>
+            <input name="{$config.name_of_region_1.code}" type="text" value="{$config.name_of_region_1.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.name_of_region_2.name}:</td>
+        <td>
+            <input name="{$config.name_of_region_2.code}" type="text" value="{$config.name_of_region_2.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.name_of_region_3.name}:</td>
+        <td>
+            <input name="{$config.name_of_region_3.code}" type="text" value="{$config.name_of_region_3.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.name_of_region_4.name}:</td>
+        <td>
+            <input name="{$config.name_of_region_4.code}" type="text" value="{$config.name_of_region_4.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.related_goods_number.name}:</td>
+        <td>
+            <input name="{$config.related_goods_number.code}" type="text" value="{$config.related_goods_number.value}" size="40" /><br>
+			<span class="notice-span">此功能还没有启用</span>
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.help_open.name}:</td>
+        <td>
+            <eq name="config.help_open.value" value="0">
+            	<input type="radio" checked name="{$config.help_open.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.help_open.code}" value="0" />
+			</eq>否
+			<eq name="config.help_open.value" value="1">
+            	<input type="radio" checked name="{$config.help_open.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.help_open.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>
+		</td>
+	</tr>
+	<tr>
+        <td class="label" valign="top">{$config.article_page_size.name}:</td>
+        <td>
+            <input name="{$config.article_page_size.code}" type="text" value="{$config.article_page_size.value}" size="40" />
+        </td>
+    </tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.page_style.name}:</td>
+        <td>
+            <eq name="config.page_style.value" value="0">
+            	<input type="radio" checked name="{$config.page_style.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.page_style.code}" value="0" />
+			</eq>默认经典
+			<eq name="config.page_style.value" value="1">
+            	<input type="radio" checked name="{$config.page_style.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.page_style.code}" value="1" />
+			</eq>流行页码<br>
+			<span class="notice-span">此功能还没有启用</span>
+		</td>
+	</tr>
+	<tr style="display: none;">
+        <td class="label" valign="top">{$config.recommend_order.name}:</td>
+        <td>
+            <eq name="config.recommend_order.value" value="0">
+            	<input type="radio" checked name="{$config.recommend_order.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.recommend_order.code}" value="0" />
+			</eq>推荐排序 
+			<eq name="config.recommend_order.value" value="1">
+            	<input type="radio" checked name="{$config.recommend_order.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.recommend_order.code}" value="1" />
+			</eq>随机显示<br>
+			<span class="notice-span">推荐排序适合少量推荐，随机显示大量推荐，此功能还没有启用</span>
+		</td>
+	</tr>
+</table>

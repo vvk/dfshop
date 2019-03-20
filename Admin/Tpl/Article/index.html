@@ -1,0 +1,97 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+<div class="list-div" id="listDiv">
+	<table cellspacing='1' cellpadding='3' id='list-table'>
+		<tr>
+			<th>编号</th>
+			<th>文章标题</th>
+			<th>文章分类</th>
+			<th>是否显示</th>
+			<th>添加日期</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+
+		<if condition="$article">
+			<volist name="article" id="vo">
+				<tr id={$vo.id}>
+					<td>{$vo.id}</td>
+					<td>{$vo.title}</td>
+					<td>{$vo.cat_name}</td>
+					<td>
+						<if condition="$vo.is_show eq 1">
+					     <img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor:pointer;" onclick="is_show(this,{$vo.id})"/>
+						<else />
+							 <img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor:pointer;" onclick="is_show(this,{$vo.id})"/>
+						</if>
+					</td>
+					<td>{$vo.add_time}</td>
+					<td>{$vo.sort_order}</td>
+					<td>
+						<a href="__APP__/Article/articleInfo/id/{$vo.id}" title="编辑"><img src="__PUBLIC__/Images/icon_edit.gif" /></a>
+						<a href="javascript:void(0)" title="删除" onclick="del_article({$vo.id})"><img src="__PUBLIC__/Images/icon_drop.gif" /></a>
+					</td>
+				</tr>
+			</volist>	
+			<tr><td colspan="7"><div class="page"><p>{$page_list}</p></div>	</td></tr>
+		<else />
+			<tr><td colspan="6">没有查询到任何记录</td></tr>
+		</if>
+	</table>
+</div>
+<include file="PUblic:pagefooter" />
+<script type="text/javascript">
+	//点击修改文章是否显示
+	function is_show(obj, id){
+		loading();
+		var url = "__APP__/Article/articleShowToggle";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '2'){
+				var reg = /yes/;
+				if(reg.test(obj.src)){
+					obj.src = '__PUBLIC__/Images/no.gif';
+				}else{
+					obj.src = '__PUBLIC__/Images/yes.gif';
+				}
+				complete_loading();
+			}else{
+				complete_loading();
+				if(data == 0){
+					alert('操作失败');
+				}else if(data == 1){
+					alert('文章不存在');
+					window.location.reload();
+				}
+				
+			}
+		},'TEXT');	
+	}
+	
+	//删除文章
+	function del_article(id){
+		var con = confirm("您确定要删除吗？");
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/Article/delArticle";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+				window.location.reload();
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('删除失败');
+			}
+		},'text');
+	}
+
+
+
+</script>

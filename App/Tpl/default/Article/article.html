@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$article.keywords}" />
+	<meta http-equiv="description" content="{$article.article_desc}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/special.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.lazyload.js"></script>
+	<title>{$article.title}--{$shop_name}</title>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("img.lazy").show().lazyload({ //页面加载完毕运行
+			effect : "fadeIn",         //淡入效果
+	　　　　　　　threshold : 100,        // 提前200像素加载
+	　　　　　　　failurelimit : 0,         //随机加载10张不在范围内图片
+	　　　　　　　skip_invisible : false      //设置为display：none 的图片 也加载   false否  True是
+		});
+		
+		 $("img").lazyload({
+       		  event : "sporty"
+     	});
+	});
+	
+</script>
+<body>
+	<include file="Public:header" />
+	
+	<div class="article">
+		<div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>>{$crumbs}
+		</div>
+	
+		<div class="categoryCon">
+			<div class='leftCategory left' style="margin-top: 10px;">				
+				<include file="Public:leftGoods" />
+			</div>
+			<div class="articleCon right">
+                <p class="articleTitle">{$article.title}</p>
+                    <p class="articleTime">{$article.time}</p>
+                <div class="articleBox">{$article.content}</div>
+                
+                <div class="articleLink">
+                    <span class="left">上一篇：<if condition="$prevPage"><a href="/Article/article/id/{$prevPage.id}" title='{$prevPage.title}'>{$prevPage.title}</a><else/>没有了</if></span>
+                    <span class="right">下一篇：<if condition="$nextPage"><a href="/Article/article/id/{$nextPage.id}" title='{$prevPage.title}'>{$nextPage.title}</a><else/>没有了</if></span>
+                </div>
+				
+				
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){			
+            $(".articleBox li:last").css('border','none');
+            $(".articleBox li a").hover(function(){
+                $(this).siblings('b').css("background-position",'0 -277px');
+            },function(){
+                $(this).siblings('b').css("background-position",'0 100px') 
+            });  
+			
+//			$('.nav .navBox li').each(function(k){		
+//				link = $(this).find('a').attr('href');
+//				if(link.indexOf('Article')>=0){
+//				$(this).addClass('currentNav').siblings().removeClass('currentNav');
+//				return false;        
+//			}   
+		})
+		
+	</script>
+	
+	<include file="Public:footer" />
+</body>
+</html>
+

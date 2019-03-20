@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'banner_name', 2 => 'banner_url', 3 => 'is_show', 4 => 'sort_order', '_autoinc' => false, '_type' => array ( 'id' => 'tinyint(4)', 'banner_name' => 'varchar(60)', 'banner_url' => 'varchar(255)', 'is_show' => 'tinyint(1)', 'sort_order' => 'tinyint(3)', ), );?>

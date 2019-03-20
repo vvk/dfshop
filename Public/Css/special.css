@@ -1,0 +1,29 @@
+/* 浏览历史 */
+.history{width:200px;border:1px solid #DADADA;overflow:hidden;margin-bottom:20px;background:#fff;}
+.historyTitle{height:40px;line-height:40px;background:#E60012;color:#fff;font-family:'微软雅黑';font-size:18px;padding-left:20px;}
+.noHistory{height:35px;line-height:35px;text-align:center;color:#404040;}
+.history li{display:block;width:200px;margin-top:10px;margin-bottom:10px;float:left;}
+.history li dl{display:block;width:200px;margin:0 auto;border-bottom:1px dotted #dadada;padding-top:5px;padding-bottom:10px;float:left;}
+.history li dd{width:80px;height:80px;margin-left:10px;display:block;float:left;overflow:hidden;}
+.history li dd img{width:80px;height:80px;}
+.history li dt{text-align:center;width:90px;margin-left:10px;float:left;display:block;}
+.history li dt a{line-height:20px;}
+.history li dt .price{display:block;font-size:14px;font-family:'微软雅黑';margin-top:5px;color:red;font-weight:bold;}
+.historyTitle a{height:40px;line-height:40px;font-size:12px;color:#fff;margin-right:20px;}
+.historyTitle a:hvoer{color:#fff;text-decoration:underline;}
+/* 浏览历史 */
+
+ /* 热销商品 */
+.hotGoods{width:200px;border:1px solid #DADADA;margin-bottom:20px;overflow:hidden;background:#fff;}
+.hotGoodsTitle{height:40px;line-height:40px;background:#E60012;color:#fff;font-family:'微软雅黑';font-size:18px;padding-left:20px;}
+.hotGoods li{display:block;width:200px;margin-top:10px;margin-bottom:10px;float:left;}
+.hotGoods li dl{display:block;width:200px;margin:0 auto;border-bottom:1px dotted #dadada;padding-top:5px;padding-bottom:10px;float:left;}
+.hotGoods li dd{width:80px;height:80px;margin-left:10px;display:block;float:left;overflow:hidden;}
+.hotGoods li dd img{width:80px;height:80px;}
+.hotGoods li dt{text-align:center;width:90px;margin-left:10px;float:left;display:block;}
+.hotGoods li dt em{font-style:normal;color:red;font-weight:bolder;font-size:16px;padding-right:3px;font-family:Arial}
+.hotGoods li dt .price{display:block;font-size:14px;font-family:'微软雅黑';margin-top:5px;color:red;font-weight:bold;}
+.hotGoods li dt .sales{display:block;text-align:center;font-size:12px;font-family:'宋体';color:#404040}
+.hotGoods li dt .sales em{font-style:normal;color:red;font-size:14px;font-weight:bold;font-family:Arial}
+/* 热销商品 */
+

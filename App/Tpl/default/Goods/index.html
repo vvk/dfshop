@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$goods.keywords}" />
+	<meta http-equiv="description" content="{$goods.description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/special.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.lazyload.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/cloud-zoom.1.0.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/goods.js"></script>
+	<title>{$goods.goods_name}--{$shop_name}</title>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("img.lazy").show().lazyload({ //页面加载完毕运行
+			effect : "fadeIn",         //淡入效果
+	　　　　　　　threshold : 100,        // 提前200像素加载
+	　　　　　　　failurelimit : 0,         //随机加载10张不在范围内图片
+	　　　　　　　skip_invisible : false      //设置为display：none 的图片 也加载   false否  True是
+		});
+		
+		 $("img").lazyload({
+       		  event : "sporty"
+     	});
+		
+		/* 左部滚动顶部停止滚动 */
+		//float_lay(document, 'leftGoods');
+	});
+	
+</script>
+<body>
+	<include file="Public:header" />
+
+	<div class="goods">
+		<div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>>{$crumbs}
+		</div>
+	
+		<div class="goodsInfo">
+			<div class="goodsImg">
+				<a href="{$host}{$goods.goods_bigThumb}" class = 'cloud-zoom' id='zoom1'
+            rel="adjustX: 10, adjustY:-4"><img src="__PUBLIC__/Images/grey.gif"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" data-original="{$host}{$goods.goods_thumb}" class='lazy' /></a>
+			<!-- 分享  start -->
+			<div class="share">
+					<!-- JiaThis Button BEGIN -->
+					<div class="jiathis_style_24x24">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a class="jiathis_button_kaixin001"></a>
+					<a class="jiathis_button_yixin"></a>
+					<a class="jiathis_button_miliao"></a>
+					<a class="jiathis_button_cqq"></a>
+					<a class="jiathis_button_douban"></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+					</div>
+					<script type="text/javascript" >
+					var jiathis_config={
+						summary:"",
+						shortUrl:false,
+						hideMore:false
+					}
+					</script>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+					<!-- JiaThis Button END -->
+				</div>
+			</div>
+			<!-- 分享 end -->
+			<div class="goodsDetails">
+				<p class="goodsTitle">{$goods.goods_name}</p>
+				<dl>
+					<dt>市场价：</dt><dd class="marketPrice">￥{$goods.market_price}</dd>
+				</dl>
+				<dl  class="shopPrice">
+					<dt>本店价：</dt><dd>￥{$goods.shop_price}</dd>
+				</dl>
+				<dl  class="addTime">
+					<dt>上架时间：</dt><dd>{$goods.time}</dd>
+				</dl>
+				<dl>
+					<dt>商品编号：</dt><dd>{$goods.goods_sn}</dd>
+				</dl>
+				<dl  class="">
+					<dt>库存：</dt><dd><em>{$goods.goods_number}</em> 件</dd>
+				</dl>
+				<dl  class="comment">
+					<dt>用户评价：</dt><dd><img src="__PUBLIC__/Images/stars{$goods.comment_rank}.gif" /><span>共 <em>{$goods.commentCount}</em> 条评论</span></dd>
+				</dl>
+				<dl  class="saleNum">
+					<dt>已经售出：</dt><dd><em>{$goods.sale_number}</em> 件</dd>
+				</dl>
+				<dl  class="saleNum">
+					<dt>赠送积分：</dt><dd><em>{$goods.integral}</em></dd>
+				</dl>
+				<dl  class="saleNum">
+					<dt>点击量：</dt><dd><em>{$goods.click_count}</em></dd>
+				</dl>
+			
+				<div class="act">
+					<div class="goodsNum">
+						<span>购买数量：</span>
+						<a href="javascript:void(0)" id='reduce' onclick="goodsReduce()" class="ico left"></a>
+						<input type="text" name='number' id="buyNum" value='1' class='left' />
+						<a href="javascript:void(0)" id="add" onclick="goodsAdd()"  class="ico left"></a>
+					</div>
+					<div class="button">
+						<a href="javascript:void(0)" id="buyNow" onclick="buyGoods({$goods.id})" class='ico left'>立即购买</a>
+						<a href="javascript:void(0)" id="addCart" onclick="addCart({$goods.id})" class='ico left'></a>
+						<a href="javascript:void(0)" id='collect' onclick="collect({$goods.id})" class='left'>收藏</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="goodsBox">
+			<include file='Public:leftGoods' />
+			<div class="goodsCon right">
+				<div class="goodsConTitle">
+					<span id="desc" class='ico left currentTab'>商品介绍</span>
+					<span id="comment" class='ico left'>商品评介</span>
+				</div>
+			
+				<div class='goodsDesc'>{$goods.goods_desc}</div>
+			
+				<div class="goodsComment"  style='display:none;'>
+					<p class='commontTitle'><span>用户评论</span></p>
+					
+					<if condition="$comment eq ''">
+						<p class='noCommont'>暂无评论</p>
+					<else/>
+						<volist name='comment' id='vo'>
+							<div class="commontList">
+								<p class="commontInfo">
+									<span class="commontName left">{$vo.user}：</span>
+									<span class='commentPoint left'>给出<img src="__PUBLIC__/Images/stars{$vo.comment_rank}.gif"/>评分</span>
+									<span class='commontTime right'>({$vo.time})</span>
+								</p>
+								<p class="commentCon">{$vo.content}</p>
+							</div>
+						</volist>
+					</if>
+				</div>
+				<div class='commontZone' style='display:none'>
+					<p class='commontTitle'><span>我要评论</span></p>
+					<div class='commontBox'>
+						<form method='' action='' name='form'>
+						<dl>
+							<dt>用户名：</dt>
+							<dd><if condition="$Think.session.user neq ''">{$Think.session.user.user_name}<else/>匿名用户</if></dd>
+						</dl>
+						<dl class='email'>
+							<dt>E-mail：</dt>
+							<dd>
+								<input type='text' name='email' id='email' value='{$Think.session.user.email}'>
+								<span class='goodsWarning' id='emailWarning'></span>
+							</dd>
+						</dl>
+						<dl class='commentRank'>
+							<dt>评论等级：</dt>
+							<dd>
+								<input type='radio' name='rank' value='1' id='commentRank1' />
+								<img src='__PUBLIC__/Images/stars1.gif' id='star1'/>
+								<input type='radio' name='rank' value='2' id='commentRank2' />
+								<img src='__PUBLIC__/Images/stars2.gif' id='star2'/>
+								<input type='radio' name='rank' value='3' id='commentRank3' />
+								<img src='__PUBLIC__/Images/stars3.gif' id='star3'/>
+								<input type='radio' name='rank' value='4' id='commentRank4' />
+								<img src='__PUBLIC__/Images/stars4.gif' id='star4'/>
+								<input type='radio' name='rank' value='5' id='commentRank5' checked='checked' />
+								<img src='__PUBLIC__/Images/stars5.gif' id='star5'/>
+							</dd>
+						</dl>
+						<dl class='commentIn'>
+							<dt>评论内容：</dt>
+							<dd><textarea class='left' id='commontCon'></textarea><span class='goodsWarning' id='commontWarning'></span></dd>
+						</dl>
+						<dl class='verify'>
+							<dt>验证码：</dt>
+							<dd>
+								<input type='text' name='verify' id='verify' class='left' value=''>
+								<img src="__APP__/Common/verify" id='verifyImg' class='left' />
+								<a href='javascript:void(0)' title='换一张' class='ico refreshVerify left' onclick="$('#verifyImg').attr('src','__APP__/Common/verify/'+Math.random())"></a>
+								<span class='goodsWarning' id='verifyWarning'></span>
+							</dd>
+						</dl>
+						<dl class="submit">
+							<dt>&nbsp;</dt>
+							<dd><input type='button' id='submitBtn' name='submit' onclick='submitComment({$goods.id})' value='提交评论' /></dd>
+						</dl>
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<!--<div class='addCart' id='addCart'>
+		<p class='addCartTitle'>添加到购物车<img src='__PUBLIC__/Images/closeBtn.png' id='close' title='闭关' /></p>
+		<div class='addCartBox'>
+			<p class='info'>
+				<span class="success">添加到购物车成功</span><br />
+				<a href='' class='settlement'>去结算</a>
+			</p>
+		</div>
+	</div>-->
+	<include file="Public:footer" />
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+<include file="Public:pageheader" />
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="tab-div">
+   <div id="tabbody-div">
+	  <form  action="__APP__/Article/saveArticle" method="post" enctype="multipart/form-data" name="theForm" onsubmit="return check();">
+         <table width="90%" id="general-table">
+			<tr>
+		        <td class="narrow-label">文章标题：</td>
+		        <td><input type="text" name="title" id='title' size ="40" maxlength="60" value="{$article.title}" /></td>
+		    </tr>  
+			<tr>
+				<td class="narrow-label">文章分类：</td>
+				<td><select name="cat_id">{$article.option}</select></td>
+			</tr>
+			<tr>
+		        <td class="narrow-label">文作者：</td>
+		        <td><input type="text" name="author" maxlength="60" value="{$article.author}" /></td>
+		    </tr>
+			<tr>
+		        <td class="narrow-label">作者email:</td>
+		        <td><input type="text" name="authoremail" size='40' maxlength="60" value="{$article.authoremail}" /></td>
+		    </tr>
+			<tr>
+				<td class="narrow-label">排序：</td>
+				<td><input type="text" name="sort_order" size ="10" value="{$article.sort_order}" /></td>
+			</tr>	
+			
+			<tr>
+				<td class="narrow-label">是否显示:</td>
+				<td>
+					<if condition="$article.is_show eq 0 ">
+						<input type="radio" name='is_show' value='0' checked>
+					<else />
+						<input type="radio" name='is_show' value='0'>
+					</if>否
+					<if condition="$article.is_show eq 1 ">
+						<input type="radio" name='is_show' value='1' checked>
+					<else />
+						<input type="radio" name='is_show' value='1'>
+					</if>是
+				</td>
+			</tr>
+			<tr>
+		        <td class="narrow-label">关键字:</td>
+		        <td><input type="text" name="keywords" size='40' maxlength="60" value="{$article.keywords}" /></td>
+		    </tr>
+			<tr>
+		        <td class="narrow-label">文章描述:</td>
+		        <td><textarea name="article_desc" cols="37" rows="5">{$article.article_desc}</textarea></td>
+		    </tr>
+			<tr>
+		        <td class="narrow-label">文章摘要:</td>
+		        <td><textarea name="abstract" cols="37" rows="5">{$article.abstract}</textarea></td>
+		    </tr>
+			<tr>
+				<td class="narrow-label">文章内容：</td>
+				<td><script id="content" name="content" type="text/plain" >{$article.content}</script></td>
+			</tr>
+			<tr><td>&nbsp</td><td>&nbsp;</td></td>
+			<tr>
+				<td></td>
+				<td>
+					<input type="hidden" name="id" value="{$article.id}" />
+			        <input type="hidden" name="action" value="{$action}" />
+			        <input type="reset" value="重置" class="button"  style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+			        <input type="submit" value="确定" class="button"  style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+				</td>
+			</tr>
+         </table>
+	  </form>
+   </div>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	var config = {'initialFrameWidth':700,'initialFrameHeight':300,toolbars:[
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                'print', 'preview', 'searchreplace', 'help', 'drafts']
+        ]};
+    var editor = UE.getEditor('content', config);
+	
+	function check(){
+		var title = $('#title').val();
+		var content = editor.getContent();
+		if(!title){
+			alert('文章标题不能为空');
+			return false;
+		}
+		if(!content){
+			alert('文章内容不能为空');
+			return false;
+		}
+		
+	}
+	
+	
+</script>
+
+
+

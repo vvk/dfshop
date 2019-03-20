@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+	<include file='PUBLIC:onlineService'/>
+	<div class='header2'>
+		<div class="headerBanner">
+			<div class="bannerCon">
+				<div class="webAction">
+					<b title='收藏'></b>
+					<a href="javascript:AddFavorite(window.location,document.title)" id="collection" title='收藏'>收藏本站</a>
+				</div>
+				<div class="userAction">
+					您好，欢迎来到东方商城&nbsp;&nbsp;&nbsp;<a href="/login.html" title="登录">请登录</a>&nbsp;
+					<a href="/register.html" title="注册">免费注册</a>&nbsp;
+					<a href="/user.html" title="个人中心">个人中心</a>
+				</div>
+			</div>
+		</div>
+		<div class='header2Con'>
+				<a href='/'><img src='__PUBLIC__/Uploads/{$logo}' class='logo left'/></a>
+				<span class='left'>用户登录</span>
+		</div>
+	</div>
+	
+	<div class='login'>
+		<div class='loginBox'>
+			<div class='loginTitle'>
+				<span class='userLogin left'>用户登录</span>
+			</div>
+			
+			<div class='loginCon left'>
+				<form method='' action=''>
+					<dl>
+						<dt>邮箱：</dt>
+						<dd>
+							<div class='inputBox' id='emailBox'>
+								<b class='emailImg ico left'></b>
+								<input type='text' name='email' id='email' onfocus="emailLogFocus();" onkeydown="keyEnterLogin(event)" onblur="emailLogBlur()">
+							</div>
+							<span class='warning' id='emailWwarning'><b class='ico2 left'></b><font></font></span>
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>密码：</dt>
+						<dd>
+							<div class='inputBox' id='passBox'>
+								<b class='passImg ico left'></b>
+								<input type='password' name='password' id='pass' onfocus="passlogFocus();"  onkeydown="keyEnterLogin(event)" onblur="passlogBlur();">
+							</div>
+							<span class='warning' id='passWwarning'><b class='ico2 left'></b><font></font></span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>&nbsp;</dt>
+						<dd>
+                            <input type='button' name='submit' onclick="login()" id='loginBtn' value='登录'>
+                            <a href="/forgetPwd.html" class="forgetPwd">忘记登录密码?</a>
+                            </dd>
+					</dl>
+				</form>
+                <div class='otherLogin'>
+					<p>您还可以选择以后卡式登录：</p>
+					<ul> 	
+						<li><a href='{$qqLoginUrl}' title='QQ登录' class='ico qqLogin'></a></li>
+                        <li><a href='{$sinaLoginUrl}' title='新浪微博登录' class='ico weiboLogin'></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class='loginRight left'>
+				<p class='noUser'>还不是东方会员</p>
+				<p class='advice'>只需30秒即可注册成为东方会员，享受便宜又放心的购物乐趣。</p>
+				<a href='/register.html' class='registerBtn'>免费注册</a>
+			</div>
+			
+		</div>
+	</div>
+	<include file="Public:footer2" />
+</body>
+</html>
+

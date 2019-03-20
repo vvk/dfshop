@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="cnenterOrder">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        
+        <div class="cnenterOrderBox">
+            <div class="userCenterTitle"><span>我的订单</span></div>            
+            <table  border='0' cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>订单号</th>
+                    <th>下单时间</th>
+                    <th>订单总金额</th>
+                    <th>订单状态</th>
+                    <th width='100'>操作</th>
+                </tr>
+                <if condition="$count eq 0">
+                <tr class="noOrder"><td colspan="5">亲，您还没有订单</td></tr>
+                </if>
+                <volist name='order' id='vo'>
+                <tr id="order_{$vo.id}">
+                    <td><a href="/centerOrderInfo-{$vo.id}.html" target="_blank">{$vo.order_sn}</a></td>
+                    <td>{$vo.time}</td>
+                    <td>￥{$vo.pay_fee}</td>
+                    <td class='order_status'>{$vo.status}</td>
+                    <td>{$vo.handle}</td>
+                </tr>
+                </volist>
+               
+            </table>
+            <div class="page2">{$page_list}</div>
+            
+        </div>
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>
+

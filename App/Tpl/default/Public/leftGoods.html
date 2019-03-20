@@ -1,0 +1,38 @@
+<div id='leftGoods' class='left' >
+	<div class="hotGoods">
+		<p class='hotGoodsTitle'>热销商品排行榜</p>
+		<ul>
+			<volist name='rankGoods' id='vo'>
+				<li>
+					<dl>
+						<dd><a href="/goods-{$vo.id}.html" target='_blank'><img src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}" class='lazy transitionAll' title='{$vo.goods_name}'/></a></dd>
+						<dt>
+							<em>{$i}</em><a href="/goods-{$vo.id}.html" target='_blank' title='{$vo.goods_name}'><if condition="$vo.goods_name|strlen gt '18'">{$vo.goods_name|mb_substr=###,0,17,'utf-8'}...<else/>{$vo.goods_name}</if></a>
+							<span class="price">￥{$vo.shop_price}</span>
+							<span class="sales">销量：<em>{$vo.sale_number}</em></span>
+						</dt>
+					</dl>
+				</li>
+			</volist>	
+		</ul>
+	</div>
+	
+	<div class="history">
+		<p class='historyTitle'>浏览历史<a href="javascript:void(0)" class='clearHistory right' onclick='clearHistory()'>清空历史记录</a></p>
+		<if condition="$historyGoods">
+			<ul class='historyGoods'>
+				<volist name='historyGoods' id='vo'>
+					<li>
+						<dl>
+							<dd><a href="/goods-{$vo.id}.html" target="_blank"><img  src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}" class='lazy transitionAll' title='{$vo.goods_name}'/></a></dd>
+							<dt><a href="/goods-{$vo.id}.html" target="_blank" title='商品名称商品名称商品名称'><if condition="$vo.goods_name|strlen gt '18'">{$vo.goods_name|mb_substr=###,0,17,'utf-8'}...<else/>{$vo.goods_name}</if></a><span class="price">￥{$vo.shop_price}</span></dt>							
+						</dl>
+					</li>
+				</volist>
+			</ul>
+		<else/>
+			<p class='noHistory'>您的浏览历史为空</p>
+		</if>
+	</div>
+</div>
+

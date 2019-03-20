@@ -1,0 +1,64 @@
+<div class="header">
+	<div class="headerBanner">
+		<div class="bannerCon">
+			<div class="webAction">
+				<b title='收藏'></b>
+				<a href="javascript:AddFavorite(window.location,document.title)" id="collection" title='收藏'>收藏本站</a>
+			</div>
+			<div class="userAction">
+                <if condition="$Think.session.user neq ''">
+                您好&nbsp;<font style='color:red;font-weight:bold;'>{$Think.session.user.user_name}</font>，欢迎来到东方商城&nbsp;&nbsp;&nbsp;<a href="/user.html" title="个人中心">个人中心</a><a href="javascript:void()" onclick="logout()" class="logout">退出</a>         
+                </if>
+                
+                <empty name='Think.session.user'>
+                     您好，欢迎来到东方商城&nbsp;&nbsp;&nbsp;<a href="/login.html" title="登录">请登录</a>&nbsp;
+				   <a href="/register.html" title="注册">免费注册</a>&nbsp;<a href="/user.html" title="个人中心">个人中心</a>
+                </empty>
+			</div>
+		</div>
+	</div>
+	<div class="headerCon">
+		<div class="logo"><a href='/'><img src="__PUBLIC__/Uploads/{$logo}"/></a></div>
+		<div class="search">
+			<form>
+				<span></span>
+				<input type="text" name="search" id="headerSearch" onkeydown="searchGoodsEnter(event)" rel="{$search_keywords}" value="{$search_keywords}" required x-webkit-speech x-webkit-grammar="builtin:translate">
+				<input type="button" name="submit" id="headerSubmit" onclick="searchGoods()" value="搜索">
+			</form>
+			<div class="hotSearch">
+				<dl>
+					<dt>热门搜索：</dt>
+					<volist name='hotSearch' id='vo'>
+						<dd><a href="/search-{$vo.keyword}.html" title='{$vo.keyword}' target="_blank">{$vo.keyword}</a></dd>
+					</volist>
+				</dl>	
+			</div>
+		</div>
+		<div class="cart">
+			<span>
+				<b class="ico"></b><a href="/cart.html" target='_blank'>去购物车结算</a><em id='cartGoodsNum'>0</em>
+				<div class="cartGoods">
+					<img src='__PUBLIC__/Images/loading1.gif' id='loadingCartGoods'/>
+					<p class="noGoods">您的购物车中没有商品</p>
+				</div>
+			</span>
+		</div>
+	</div>
+	
+	<div class="nav">
+		<div class="navBox">
+			<ul>
+				<li class="currentNav"><a href="{$host}/">首页</a></li>			
+                <volist name='nav' id='vo'>
+                    <if condition="$vo.opennew eq '0'">
+                        <li><a href="{$host}{$vo.url}">{$vo.name}</a></li>
+                    <else/>
+                        <li><a href="{$host}{$vo.url}" target="_blank">{$vo.name}</a></li>
+                    </if>
+                </volist>
+			</ul>
+		</div>
+	</div>
+</div>
+<include file='Public:onlineService'/>
+

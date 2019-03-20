@@ -1,0 +1,227 @@
+<table width="90%" id="shop_info-table">
+    <tr>
+        <td class="label" valign="top">{$config.shop_name.name}:</td>
+        <td>
+            <input name="{$config.shop_name.code}" type="text" value="{$config.shop_name.value}" size="40" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_title.name}:</td>
+        <td>
+            <input name="{$config.shop_title.code}" type="text" value="{$config.shop_title.value}" size="40" /><br>
+			<span class="notice-span">商店的标题将显示在浏览器的标题栏</span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_desc.name}:</td>
+        <td>
+            <input name="{$config.shop_desc.code}" type="text" value="{$config.shop_desc.value}" size="40" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_keywords.name}:</td>
+        <td>
+            <input name="{$config.shop_keywords.code}" type="text" value="{$config.shop_keywords.value}" size="40" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_province.name}:</td>
+        <td>
+            <select name="{$config.shop_province.code}" id="province" onchange="changed('province')" style="width:75px;margin-left:2px;">
+            	<volist name="province" id="vo">					
+					<eq name="config.shop_province.value" value="$vo.id">
+						<option value="{$vo.id}" selected>{$vo.region_name}</option>
+					<else />
+						<option value="{$vo.id}">{$vo.region_name}</option>
+					</eq>
+				</volist>
+			</select>
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_city.name}:</td>
+        <td>
+            <select name="{$config.shop_city.code}" id="city" onchange="changed('city')" style="width:75px;margin-left:2px;">
+            	<volist name="city" id="vo">					
+					<eq name="config.shop_city.value" value="$vo.id">
+						<option value="{$vo.id}" selected>{$vo.region_name}</option>
+					<else />
+						<option value="{$vo.id}">{$vo.region_name}</option>
+					</eq>
+				</volist>
+			</select>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.shop_district.name}:</td>
+        <td>
+            <select name="{$config.shop_district.code}" id="district" style="width:75px;margin-left:2px;">
+            	<volist name="district" id="vo">            		
+					<eq name="config.shop_district.value" value="$vo.id">
+						<option value="{$vo.id}" selected>{$vo.region_name}</option>
+					<else />
+						<option value="{$vo.id}">{$vo.region_name}</option>
+					</eq>					
+				</volist>
+			</select>
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_address.name}:</td>
+        <td>
+            <input name="{$config.shop_address.code}" type="text" value="{$config.shop_address.value}" size="40" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.qq.name}:</td>
+        <td><input name="{$config.qq.code}" type="text" value="{$config.qq.value}" size="40" /></td>
+    </tr>
+    <!--<tr>
+        <td class="label" valign="top">{$config.ww.name}:</td>
+        <td><input name="{$config.ww.code}" type="text" value="{$config.ww.value}" size="40" /></td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.skype.name}:</td>
+        <td><input name="{$config.skype.code}" type="text" value="{$config.skype.value}" size="40" /></td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.ym.name}:</td>
+        <td><input name="{$config.ym.code}" type="text" value="{$config.ym.value}" size="40" /></td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.msn.name}:</td>
+        <td><input name="{$config.msn.code}" type="text" value="{$config.msn.value}" size="40" /></td>
+    </tr>-->
+	<tr>
+        <td class="label" valign="top">{$config.service_email.name}:</td>
+        <td><input name="{$config.service_email.code}" type="text" value="{$config.service_email.value}" size="40" /></td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.service_phone.name}: </td>
+        <td>
+            <input name="{$config.service_phone.code}" type="text" value="{$config.service_phone.value}" size="40" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">
+            {$config.shop_closed.name}:
+        </td>
+        <td>
+	
+			<eq name="config.shop_closed.value" value="0">
+            	<input type="radio" checked name="{$config.shop_closed.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.shop_closed.code}" value="0" />
+			</eq>否
+			
+			<eq name="config.shop_closed.value" value="1">
+            	<input type="radio" checked name="{$config.shop_closed.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.shop_closed.code}" value="1" />
+			</eq>是
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.close_comment.name}:</td>
+        <td>
+            <textarea name="{$config.close_comment.code}" cols="40" rows="5">{$config.close_comment.value}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="label" valign="top">{$config.shop_logo.name}: </td>
+        <td>
+            <input name="{$config.shop_logo.code}" type="file" value="" size="40" />
+			<empty name="config.shop_logo.value">
+				<img src="__PUBLIC__/Images/no.gif" />
+			<else />	
+				<img src="__PUBLIC__/Images/yes.gif" />&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="del_img('{$config.shop_logo.code}')" title="删除"><img src="__PUBLIC__/Images/icon_trash.gif"/></a>
+			</empty>
+        </td>
+    </tr>
+    <!--<tr>
+        <td class="label" valign="top">{$config.licensed.name}:</td>
+        <td>
+            <eq name="config.licensed.value" value="0">
+            	<input type="radio" checked name="{$config.licensed.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.licensed.code}" value="0" />
+			</eq>否
+			
+			<eq name="config.licensed.value" value="1">
+            	<input type="radio" checked name="{$config.licensed.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.licensed.code}" value="1" />
+			</eq>是
+        </td>
+    </tr>-->
+	<tr>
+        <td class="label" valign="top">{$config.user_notice.name}:</td>
+        <td>
+            <textarea name="{$config.user_notice.code}" cols="40" rows="5">{$config.user_notice.value}</textarea>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.shop_notice.name}:</td>
+        <td>
+            <textarea name="{$config.shop_notice.code}" cols="40" rows="5">{$config.shop_notice.value}</textarea>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.shop_reg_closed.name}:</td>
+        <td>
+            <eq name="config.shop_reg_closed.value" value="0">
+            	<input type="radio" checked name="{$config.shop_reg_closed.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.shop_reg_closed.code}" value="0" />
+			</eq>否
+			
+			<eq name="config.shop_reg_closed.value" value="1">
+            	<input type="radio" checked name="{$config.shop_reg_closed.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.shop_reg_closed.code}" value="1" />
+			</eq>是
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+	//地区改变
+	function changed(type){
+		var id = $("#"+type).val();
+		var url = "__URL__/regionChange";
+		var data = {type:type,id:id};
+		$.post(url, data,function(data){
+			if(type == 'province'){
+				cityChange(data['city']);
+				districtChange(data['district']);
+			}else{
+				districtChange(data);
+			}			
+		},'JSON');		
+	}
+
+	//更改城市
+	function cityChange(data){
+		var city = "";
+		for(var i=0; i<data.length; i++){
+			city += "<option value='"+data[i]['id']+"'>"+data[i]['region_name']+"</option>";
+		}
+		$('#city option').remove();   //先删除结点
+		$("#city").append(city);  //插入结点
+	}
+	
+	//更改区县
+	function districtChange(data){
+		var district = "";
+		for(var i=0; i<data.length; i++){
+			district += "<option value='"+data[i]['id']+"'>"+data[i]['region_name']+"</option>";
+		}
+		$('#district option').remove();   //先删除结点
+		$("#district").append(district);  //插入结点
+	}
+	
+
+	
+	
+</script>

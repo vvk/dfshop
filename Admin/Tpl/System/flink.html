@@ -1,0 +1,92 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+<div class="list-div" id="listhiv">
+	<table cellpadding="3" cellspacing="1">	
+		<tr>
+			<th>链接名称</th>
+			<th>链接地址</th>
+			<th>链接LOGO</th>
+			<th>是否显示</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+		<if condition="$flink neq ''">
+			<volist name="flink" id='vo'>
+				<tr id="{$vo.id}">
+					<td>{$vo.link_name}</td>
+					<td>{$vo.link_url}</td>
+					<td>
+						<if condition="$vo.link_logo neq ''">
+							<img src='{$host}{$vo.link_logo}' height='50'/>
+						</if>
+					</td>
+					<td>
+						<if condition="$vo.is_show eq 1">
+							<img src='__PUBLIC__/Images/yes.gif' style="cursor:pointer;cursor:hand;" title='点击修改' onclick="status_toggle({$vo.id}, this)">
+						<else />
+							<img src='__PUBLIC__/Images/no.gif' style="cursor:pointer;cursor:hand;" title='点击修改' onclick="status_toggle({$vo.id}, this)">
+						</if>
+					</td>
+					<td>{$vo.sort_order}</td>
+					<td>
+						<a href="__APP__/System/flinkInfo/id/{$vo.id}"><img src="__PUBLIC__/Images/icon_edit.gif" title='编辑' /></a>
+						<a href="javascript:void(0)" onclick="del_flink({$vo.id})"><img src="__PUBLIC__/Images/icon_drop.gif" title='删除' /></a>
+					</td>
+				</tr>
+			</volist>
+		<else />
+			<tr><td colspan='6'>没有查询到任何记录</td></tr>
+		</if>
+		
+		<tr><td colspan='6'><div class="page"><p>{$page_list}</p></div>	</td></tr>
+	</table>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	//删除友情链接
+	function del_flink(id){
+		var con = confirm('确定要删除吗？');
+		if(!con){
+			return false;
+		}
+		
+		loading();
+		var url = "__APP__/System/delFlink";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+				complete_loading();
+				window.location.reload();
+			}else{
+				complete_loading();
+				alert('删除失败');
+			}
+		},'text');	
+	}
+
+	//点修改友情链接显示状态 
+	function status_toggle(id,obj){
+		loading();
+		var url = "__APP__/System/flinkStatusToggle";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			//alert(data);	
+			if(data == '1'){
+				var reg = /no.gif/;
+				if(reg.test(obj.src)){
+					obj.src = "__PUBLIC__/Images/yes.gif";
+				}else{
+					obj.src = "__PUBLIC__/Images/no.gif";
+				}
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('修改失败');
+			}		
+		},'TEXT');
+	}
+
+</script>

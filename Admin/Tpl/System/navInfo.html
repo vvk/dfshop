@@ -1,0 +1,94 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+#notice-span{color:#666;}	
+.button{background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;}
+</style>
+<div class="main-div">
+	<form action="__APP__/System/saveNav" method="post" name="form" onSubmit="return check();">
+		<table cellspacing="1" cellpadding="3" width="100%">
+			<tr>
+				<td class="label">名称：</td>
+				<td>
+					<input type='text' value="{$nav.name}" name="name" id='name' size="40"/>
+					<span id="notice-span">导航名称不能为空</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">URL：</td>
+				<td><input type='text' value="{$nav.url}" name='url' size="40"/></td>
+			</tr>
+			<tr>
+				<td class="label">标题：</td>
+				<td><input type='text' value="{$nav.title}" name='title' size="40"/></td>
+			</tr>
+			<tr>
+				<td class="label">关键字：</td>
+				<td>
+					<input type='text' value="{$nav.keyword}" name="keyword" size="60"/><br />
+					<span id="notice-span">每个关键字之间用，隔开</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">描述：</td>
+				<td><textarea cols="38" rows="5" name="desc">{$nav.desc}</textarea></td>
+			</tr>
+			<tr>
+				<td class="label">排序：</td>
+				<td><input type='text' value="{$nav.sort_order}" name='sort_order' size="10"/></td>
+			</tr>
+			<tr>
+				<td class="label">是否在新窗口打开：</td>
+				<td>
+					<if condition="$nav.opennew eq '0'">
+						<input type="radio" value="0" name='opennew' checked/>否
+					<else />
+						<input type="radio" value="0" name='opennew' />否
+					</if>
+					<if condition="$nav.opennew eq 1">
+						<input type="radio" value="1" name='opennew' checked />是
+					<else />
+						<input type="radio" value="1" name='opennew' />是
+					</if>				
+				</td>
+			</tr>
+			<tr>
+				<td class="label">是否显示：</td>
+				<td>
+					<if condition="$nav.is_show eq 0">
+						<input type="radio" value="0" name='is_show' checked />不显示
+					<else />
+						<input type="radio" value="0" name='is_show' />不显示
+					</if>
+					<if condition="$nav.is_show eq 1">
+						<input type="radio" value="1" name='is_show' checked />显示
+					<else />
+						<input type="radio" value="1" name='is_show' />显示
+					</if>					
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type='hidden' name='id' value='{$nav.id}' />
+					<input type='hidden' name='action' value='{$action}' />
+					<input type='reset' value='重置' class='button' />
+					<input type='submit' value='提交' class='button' />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<include file="Public:pagefooter" />
+<script type='text/javascript'>
+	function check(){
+		if(!$('#name').val()){
+			alert('导航名称不能为空！');
+			return false;
+		}
+	}
+	
+	
+	
+	
+</script>
+

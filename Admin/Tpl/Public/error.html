@@ -1,0 +1,40 @@
+<include file="Public:pageheader" />
+
+<div class="list-div">
+  <div style="background:#FFF; padding: 20px 50px; margin: 2px;">
+    	<p id="success-box"><img src="__PUBLIC__/Images/warning.gif">{$error}</p>
+		<p id="jump-info">页面正在<a id="href" href="{$jumpUrl}"><b>&nbsp;跳转&nbsp;</b></a> 等待时间： <b id="wait">{$waitSecond}</b></p>
+  </div>
+</div>
+<include file="Public:pagefooter" />
+<style type="text/css">
+	#success-box{
+		height;32px;
+		line-height:32px;
+		font-weight:bold;
+		font-size:14px;
+		text-align:center; 
+	}
+	#success-box img{
+		width:32px;
+		height;32px;
+		position:relative;
+		top:10px;
+	}
+	#jump-info{
+		font-size:12px;
+		text-align:center;
+	}
+</style>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>

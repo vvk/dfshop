@@ -1,0 +1,104 @@
+<include file="Public:pageheader" />
+
+<!-- start order statistics -->
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">订单统计信息</th>
+  </tr>
+  <tr>
+    <td width="20%"><a href="__APP__/Order/index/type/1">未付款订单:</a></td>
+    <td width="30%"><strong style="color: red">{$order.no_pay}</strong></td>
+    <td width="20%"><a href="__APP__/Order/index/type/2">已付款订单:</a></td>
+    <td width="30%"><strong>{$order.pay}</strong></td>
+  </tr>
+  <tr>
+    <td><a href="__APP__/Order/index/type/3">待发货订单:</a></td>
+    <td><strong>{$order.no_ship}</strong></td>
+    <td><a href="__APP__/Order/index/type/4">已发货订单数:</a></td>
+    <td><strong>{$order.ship}</strong></td>
+  </tr>
+</table>
+</div><br />
+<!-- end order statistics -->
+
+<!-- start goods statistics -->
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">商品统计信息</th>
+  </tr>
+  <tr>
+    <td width="20%"><a href="__APP__/Goods">商品总数:</a></td>
+    <td width="30%"><strong>{$goods.total}</strong></td>
+    <td width="20%"><a href="__APP__/Goods/index/type/1">库存警告商品数:</a></td>
+    <td width="30%"><strong style="color: red">{$goods.warn_number}</strong></td>
+  </tr>
+  <tr>
+    <td><a href="__APP__/Goods/index/type/2">推荐商品:</a></td>
+    <td><strong>{$goods.recommend}</strong></td>
+    <td><a href="__APP__/Goods/index/type/3">新品:</a></td>
+    <td><strong>{$goods.new}</strong></td>
+  </tr>
+
+</table>
+</div><br />
+<!-- end goods statistics -->
+
+<!-- start system information -->
+<div class="list-div">
+<table cellspacing='1' cellpadding='3'>
+  <tr>
+    <th colspan="4" class="group-title">系统信息</th>
+  </tr>
+  <tr>
+    <td width="20%">服务器操作系统:</td>
+    <td width="30%">{$sys_info.os} ({$sys_info.ip})</td>
+    <td width="20%">Web 服务器:</td>
+    <td width="30%">{$sys_info.web_server}</td>
+  </tr>
+  <tr>
+    <td>PHP 版本:</td>
+    <td>{$sys_info.php_ver}</td>
+    <td>MySQL 版本:</td>
+    <td>{$sys_info.mysql_ver}</td>
+  </tr>
+  <tr>
+    <td>安全模式:</td>
+    <td>{$sys_info.safe_mode}</td>
+    <td>安全模式GID:</td>
+    <td>{$sys_info.safe_mode_gid}</td>
+  </tr>
+  <tr>
+    <td>Socket 支持:</td>
+    <td>{$sys_info.socket}</td>
+    <td>时区设置:</td>
+    <td>{$sys_info.timezone}</td>
+  </tr>
+  <tr>
+    <td>GD 版本:</td>
+    <td>{$sys_info.gd}</td>
+    <td>文件上传的最大大小:</td>
+    <td>{$sys_info.max_filesize}</td>
+  </tr>
+  <tr>
+    <td>Zlib 支持:</td>
+    <td>{$sys_info.zlib}</td>
+    <td>当前语言:</td>
+    <td>{$sys_info.lang}</td>
+  </tr>
+  <tr>
+    <td>编码:</td>
+    <td>{$sys_info.DEFAULT_CHARSET}</td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  
+  
+  
+  
+  
+</table>
+</div><br />
+<!-- end system information -->

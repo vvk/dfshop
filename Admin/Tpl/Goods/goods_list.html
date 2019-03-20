@@ -1,0 +1,128 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+	td{text-align:center;}
+</style>
+
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+<div class="list-div" id="listDiv">
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>序号</th>
+    <th>商品名称</th>
+    <th>货号</th>
+    <th>市场价格</th>
+    <th>本店价格</th>
+    <th>上架</th>
+    <th>新品</th>
+    <th>推荐</th>
+    <th>推荐排序</th>
+    <th>库存</th>
+    <th>销量</th>
+    <th>点击量</th>
+    <th>操作</th>
+  <tr>
+  	<if condition="$goods_list">
+  	   <volist name="goods_list" id="goods">  	
+	  	<tr id="{$goods.id}">
+	  		<td>{$goods.id}</td>
+			<td><span onclick="">{$goods.goods_name}</span></td>
+			<td><span>{$goods.goods_sn}</span></td>
+			<td><span>{$goods.market_price}</span></td>
+			<td><span>{$goods.shop_price}</span></td>
+			<td><span>
+					<if condition="$goods.is_on_sale eq 1">
+					     <img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_on_sale')"/>
+					<else />
+						 <img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_on_sale')"/>
+					</if>
+			</span></td>
+			<td><span>
+					<if condition="$goods.is_new eq 1">
+					     <img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_new')"/>
+					<else />
+						 <img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_new'),''"/>
+					</if>
+			</span></td>
+			<td><span>
+					<if condition="$goods.is_recommend eq 1">
+					     <img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_recommend')"/>
+					<else />
+						 <img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor:pointer;" onclick="on_sale_toggle(this,{$goods.id},'is_recommend')"/>
+					</if>
+			</span></td>
+			<td><span>{$goods.sort_order}</span></td>
+			<td><span>{$goods.goods_number}</span></td>
+			<td><span>{$goods.sale_number}</span></td>
+			<td><span>{$goods.click_count}</span></td>
+			<td>
+		   		<a href="{$host}index.php/Goods/index/id/{$goods.id}" target="_blank" title="查看"><img src="__PUBLIC__/Images/icon_view.gif" width="16" height="16" border="0" /></a>
+	       	    <a href="__APP__/Goods/editGoods/id/{$goods.id}" title="编辑"><img src="__PUBLIC__/Images/icon_edit.gif" width="16" height="16" border="0" /></a>
+		        <a href="javascript:void(0);" onclick="remove_goods({$goods.id})" title="回收站"><img src="__PUBLIC__/Images/icon_trash.gif" width="16" height="16" border="0" /></a>
+			</td>
+		</tr>
+	  </volist>
+   <else />
+   		<tr><td colspan='11' align="center">没有找到任何记录</td></tr>
+   </if>   
+  <tr>
+  	<td colspan='13'>
+  		 <div class="page"><p>{$page_list}</p></div>	
+  	</td>
+  </tr>
+ 
+</table>
+<!-- end goods list -->
+<script type="text/javascript">
+	//删除指点商品
+	function remove_goods(id){
+		var con = confirm("您真的要将此商品放入回收站吗？");
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/Goods/remove/action/trash/id"+id;
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+				window.location.reload();
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('放入回收站失败');
+			}
+		},'text');
+	}
+	
+	//商品如果是上架则改为下架，如果是下架，刚改为下架
+	function on_sale_toggle(obj, id, type){
+		loading();
+		var url = "__APP__/Goods/onSaleToggle";
+		var data = {id:id,type:type};
+		$.post(url, data, function(data){
+			if(data == '2'){
+				var reg = /yes/;
+				if(reg.test(obj.src)){
+					obj.src = '__PUBLIC__/Images/no.gif';
+				}else{
+					obj.src = '__PUBLIC__/Images/yes.gif';
+				}
+				complete_loading();
+			}else{
+				if(data == 0){
+					complete_loading();
+					alert('操作失败');
+				}else if(data == 1){
+					complete_loading();
+					alert('商品不存在');
+				}
+			}
+		},'TEXT');		
+	}
+	
+</script>
+</div>
+<include file="Public:pagefooter" />

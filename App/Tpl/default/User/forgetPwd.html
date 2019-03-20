@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="forgetPwd">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>找回密码</span>
+		</div>
+        <div class="forgetPwdCon">
+            <div class='forgetPwdTitle'>
+    			<span class='userLogin left'>找回密码</span>
+    		</div>
+            
+            <div class="question">
+              
+                    <p><span class="left">请输入您注册时使用的邮箱：</span><input type="text" name="email" class="left" id="forgetPwdEmail" onkeydown="checkKey()" /><span class="left error"><b class="ico2 left"></b><font style="margin-left: 5px;"></font></span></p>
+                    
+                    <input type="button" name="submit" onclick="checkEmail()" class="left" id="forgetPwdBtn" value="提交" />
+                   
+            </div> 
+        </div>
+    </div>    
+    <script type="text/javascript">
+        $(function(){
+            $("#forgetPwdEmail").focus(function(){
+                $(".error").hide().find('font').text('');
+            })
+        })
+    </script>
+    
+	<include file="Public:footer" />
+</body>
+</html>
+

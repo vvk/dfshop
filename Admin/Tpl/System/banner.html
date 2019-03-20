@@ -1,0 +1,85 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+<div class="list-div" id="listhiv">
+	<table cellpadding="3" cellspacing="1">	
+		<tr>
+			<th>Banner图片名称</th>
+			<th>Banner图片</th>
+			<th>是否显示</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+		<if condition="$banner neq ''">
+			<volist name="banner" id='vo'>
+				<tr id="{$vo.id}">
+					<td>{$vo.banner_name}</td>
+					<td>
+					   <img src='{$host}{$vo.banner_url}' style="height:50px;margin-top: 5px;margin-bottom:5px;"/>
+					</td>
+					<td>
+						<if condition="$vo.is_show eq 1">
+							<img src='__PUBLIC__/Images/yes.gif' style="cursor:pointer;cursor:hand;" title='点击修改' onclick="status_toggle({$vo.id}, this)">
+						<else />
+							<img src='__PUBLIC__/Images/no.gif' style="cursor:pointer;cursor:hand;" title='点击修改' onclick="status_toggle({$vo.id}, this)">
+						</if>
+					</td>
+					<td>{$vo.sort_order}</td>
+					<td>
+						<a href="__APP__/System/editBanner/id/{$vo.id}"><img src="__PUBLIC__/Images/icon_edit.gif" title='编辑' /></a>
+						<a href="javascript:void(0)" onclick="delBanner({$vo.id})"><img src="__PUBLIC__/Images/icon_drop.gif" title='删除' /></a>
+					</td>
+				</tr>
+			</volist>
+          <else />
+			<tr><td colspan='5'>没有查询到任何记录</td></tr>
+		</if>
+	
+	</table>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	//删除友情链接
+	function delBanner(id){
+		var con = confirm('确定要删除吗？');
+		if(!con){
+			return false;
+		}
+		
+		loading();
+		var url = "__APP__/System/delBanner";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$("#"+id).remove();
+			}else{
+				alert('删除失败');
+			}
+            complete_loading();
+		},'text');	
+	}
+
+	//点修改友情链接显示状态 
+	function status_toggle(id,obj){
+		loading();
+		var url = "__APP__/System/bannerStatusToggle";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			//alert(data);	
+			if(data == '1'){
+				var reg = /no.gif/;
+				if(reg.test(obj.src)){
+					obj.src = "__PUBLIC__/Images/yes.gif";
+				}else{
+					obj.src = "__PUBLIC__/Images/no.gif";
+				}
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('修改失败');
+			}		
+		},'TEXT');
+	}
+
+</script>

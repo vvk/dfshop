@@ -1,0 +1,73 @@
+<include file="Public:pageheader" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/main.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/general.css" />
+<script type="text/javascript" src="__PUBLIC__/Js/region.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/utils.js"></script>
+<div class="tab-div">
+  <!-- tab bar -->
+  <div id="tabbar-div">
+    <p>      
+	  <span class="tab-front" id="shop_info-tab">网店信息</span>
+	  <span class="tab-back" id="basic-tab">基本设置</span>
+	  <span class="tab-back" id="display-tab">显示设置</span>
+	  <!--<span class="tab-back" id="shopping_flow-tab">购物流程</span>
+	  <span class="tab-back" id="goods-tab">商品显示设置</span>-->
+	  <!--<span class="tab-back" id="sms-tab">短信设置</span>
+	  <span class="tab-back" id="wap-tab">WAP设置</span>-->	  
+	 </p>
+  </div>
+  <!-- tab body -->
+  <div id="tabbody-div" class='info_box'>
+    <form enctype="multipart/form-data" name="theForm" action="__URL__/saveConfig" method="post">
+	<include file="shop_info" />
+    <include file="basic" />
+    <include file="display" />
+    <include file="shipping_flow" />
+    <include file="goods" />
+    <include file="sms" />
+    <include file="wap" />
+    <div class="button-div">
+      <input name="submit" type="submit" value="确定" class="button" style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+      <input name="reset" type="reset" value="重置" class="button" style="background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;" />
+    </div>
+    </form>
+  </div>
+</div>
+<include file="Public:pagefooter" />
+<script language="JavaScript">
+	window.onload=function(){
+		$("#tabbar-div p span").mouseover(function(){
+			var index = $("#tabbar-div p span").index($(this));
+			$("#tabbar-div p span").eq(index).removeClass('tab-back');
+			if (!$("#tabbar-div p span").eq(index).hasClass('tab-front')) {
+				$("#tabbar-div p span").eq(index).addClass('tab-hover');
+			}
+		});
+		$("#tabbar-div p span").mouseout(function(){
+			var index = $("#tabbar-div p span").index($(this));
+			$("#tabbar-div p span").eq(index).removeClass('tab-hover');
+			if(!$("#tabbar-div p span").eq(index).hasClass('tab-front')){
+				$("#tabbar-div p span").eq(index).addClass('tab-back');
+			}
+		});
+		$("#tabbar-div p span").click(function(){
+			var index = $("#tabbar-div p span").index($(this));
+			if($("#tabbar-div p span").eq(index).text() == '短信设置' || $("#tabbar-div p span").eq(index).text() == 'WAP设置'){
+				alert('此功能还没有启用');
+				return;
+			}		
+				
+			$("#tabbar-div p span").eq(index).removeClass().addClass('tab-front').siblings().removeClass('tab-front').addClass('tab-back');
+			$('.info_box table').hide();
+			$('.info_box table').eq(index).show();
+		});
+	}
+	
+	function del_img(type){
+		var con = confirm('确定要删除吗？');
+		if(con){
+			window.location.href="__URL__/delImg/code/"+type;
+		}
+	}
+
+</script>

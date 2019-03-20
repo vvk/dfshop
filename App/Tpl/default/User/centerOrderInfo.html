@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/time-plug-in.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/time-plug-in.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="centerOrderInfo">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        
+        <div class="centerOrderInfoBox">
+            <div class="userCenterTitle"><span>订单信息</span></div>
+            
+            <div class="orderInfo">
+                <dl>
+                    <dt>订单编号：</dt>
+                    <dd>{$info.order_sn}</dd>
+                </dl>
+                <dl>
+                    <dt>付款状态：</dt>
+                    <dd>{$info.order_status}</dd>
+                </dl>
+                <dl>
+                    <dt>配送状态：</dt>
+                    <dd>{$info.shipping_status}</dd>
+                </dl>
+                <dl>
+                    <dt>支付方式：</dt>
+                    <dd>{$info.pay_name}</dd>
+                </dl>
+                <dl>
+                    <dt>下单时间：</dt>
+                    <dd>{$info.add_time}</dd>
+                </dl>
+                <dl>
+                    <dt>支付时间：</dt>
+                    <dd>{$info.pay_time}</dd>
+                </dl>
+            </div>
+
+            <div class="userCenterTitle" style="margin-top:20px;"><span>商品清单</span></div>
+            <table>
+                <tr>
+                    <th>商品名称</th>
+                    <th>商品单价</th>
+                    <th>商品数量</th>
+                    <th>小计</th>
+                </tr>
+                
+                <volist name="{goods}" id='vo'>
+                <tr>
+                    <td><a href="goods-{$vo.goods_id}.html" target="_blank">{$vo.goods_name}</a></td>
+                    <td>￥{$vo.shop_price}</td>
+                    <td>{$vo.goods_number}</td>
+                    <td>￥{$vo.money}</td>
+                </tr>
+                </volist>
+                
+                <tr>
+                    <td colspan="4" style="text-align: right;padding-right:20px;">商品价值<span>￥{$info.goods_amounts}</span>，使用积分：<span>{$info.integral}</span>，价值<span>￥{$info.integral_money}</span>，实付总金额：<span>￥{$info.pay_fee}</span></td>
+                </tr>
+                
+            </table>
+
+            
+        </div>
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>
+

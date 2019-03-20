@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/special.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.lazyload.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("img.lazy").show().lazyload({ //页面加载完毕运行
+			effect : "fadeIn",         //淡入效果
+	　　　　　　　threshold : 100,        // 提前200像素加载
+	　　　　　　　failurelimit : 0,         //随机加载10张不在范围内图片
+	　　　　　　　skip_invisible : false      //设置为display：none 的图片 也加载   false否  True是
+		});
+		
+		 $("img").lazyload({
+       		  event : "sporty"
+     	});
+	});
+	
+</script>
+<body>
+	<include file="Public:header" />
+	
+	<div class="articleList">
+		<div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>>{$crumbs}
+		</div>
+	
+		<div class="categoryCon">
+			<div class='leftCategory left' style="margin-top: 10px;">				
+				<include file="Public:leftGoods" />
+			</div>
+			<div class="articleListCon right">
+                <div class="articleBox right">
+                    <ul>
+                    	<volist name='article' id='vo'>
+                    		<li>
+	                            <b class="ico"></b>
+	                            <a href="/article-{$vo.id}.html" target='_blank' class="articleTitle left" title='{$vo.title}'>{$vo.title}</a>
+	                            <span class="articleTime right">{$vo.time}</span>    
+                        	</li>
+						</volist>
+                        
+                    </ul>
+                </div>
+				
+				<div class="clear"></div>
+                <div class="page2">{$page_list}</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){			
+            $(".articleBox li:last").css('border','none');
+            $(".articleBox li a").hover(function(){
+                $(this).siblings('b').css("background-position",'0 -277px');
+            },function(){
+                $(this).siblings('b').css("background-position",'0 100px') 
+            });
+                 
+		})
+		
+	</script>
+	
+	<include file="Public:footer" />
+</body>
+</html>
+

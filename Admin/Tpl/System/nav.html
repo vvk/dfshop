@@ -1,0 +1,95 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+a{text-decoration:none;}	
+img:hover{cursor:pointer;;cursor:hand;}
+</style>
+<div class="list-div" id="listDiv">
+	<table cellspacing='1' cellpadding='3' id='list-table'>
+		<tr>
+			<th>名称</th>
+			<th>URL</th>
+			<th>是否显示</th>
+			<th>是否在新窗口打开</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+		<if condition="$nav">
+		<volist name='nav' id='vo'>
+			<tr id="{$vo.id}">
+				<td>{$vo.name}</td>
+				<td>{$vo.url}</td>
+				<td>
+					<if condition="$vo.is_show eq '1'">
+						<img src="__PUBLIC__/Images/yes.gif" title="点击修改" onclick="status_toggle({$vo.id},'is_show',this)" />
+					<else />
+						<img src="__PUBLIC__/Images/no.gif" title="点击修改" onclick="status_toggle({$vo.id},'is_show',this)"/>
+					</if>
+				</td>
+				<td>
+					<if condition="$vo.opennew eq 1">
+						<img src="__PUBLIC__/Images/yes.gif" title="点击修改" onclick="status_toggle({$vo.id},'opennew',this)"/>
+					<else />
+						<img src="__PUBLIC__/Images/no.gif" title="点击修改" onclick="status_toggle({$vo.id},'opennew',this)"/>
+					</if>
+				<td>{$vo.sort_order}</td>
+				<td>
+					<a href="__APP__/System/editNav/id/{$vo.id}"><img src="__PUBLIC__/Images/icon_edit.gif" /></a>
+					<a href="javascript:void()" onclick="del_nav('{$vo.id}')"><img src="__PUBLIC__/Images/icon_drop.gif" /></a>
+				</td>
+			</tr>
+		</volist>
+		<else />
+			<tr><td colspan='6'>没有查询到任何记录</td></tr>
+		</if>
+    </table>
+</div>
+<include file="Public:pagefooter" />
+<script type='text/javascript'>
+	//删除导航
+	function del_nav(id){
+		var con = confirm('确定要删除吗?');
+		if(!con){
+			return;
+		}
+		
+		loading();
+		var url = "__APP__/System/delNav";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$('#'+id).remove();
+				complete_loading();
+			}else{
+				complete_loading();
+				alert('删除失败');
+			}
+		},'TEXT');
+	}
+	
+	//点击修改状态
+	function status_toggle(id, field, obj){
+		loading();
+		var url = "__APP__/System/navStatusToggle";
+		var data = {id:id,field:field};
+		$.post(url, data, function(data){				
+			if(data == '1'){
+				var reg = /no.gif/;
+				if(reg.test(obj.src)){
+					obj.src = "__PUBLIC__/Images/yes.gif";
+				}else{
+					obj.src = "__PUBLIC__/Images/no.gif";
+				}
+			}else{
+				alert('修改失败');
+			}	
+            complete_loading();
+		},'TEXT');
+		
+		
+	}
+	
+</script>
+
+
+

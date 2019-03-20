@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'parent_id', 2 => 'region_name', '_autoinc' => false, '_type' => array ( 'id' => 'smallint(5) unsigned', 'parent_id' => 'smallint(5) unsigned', 'region_name' => 'varchar(120)', ), );?>

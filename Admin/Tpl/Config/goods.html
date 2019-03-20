@@ -1,0 +1,107 @@
+<table width="90%" id="goods-table" style="display:none">
+    <tr>
+        <td class="label" valign="top">{$config.show_goodssn.name}:</td>
+        <td>
+        	<eq name="config.show_goodssn.value" value="0">
+            	<input type="radio" checked name="{$config.show_goodssn.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_goodssn.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_goodssn.value" value="1">
+            	<input type="radio" checked name="{$config.show_goodssn.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_goodssn.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_brand.name}:</td>
+        <td>
+        	<eq name="config.show_brand.value" value="0">
+            	<input type="radio" checked name="{$config.show_brand.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_brand.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_brand.value" value="1">
+            	<input type="radio" checked name="{$config.show_brand.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_brand.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_goodsweight.name}:</td>
+        <td>
+        	<eq name="config.show_goodsweight.value" value="0">
+            	<input type="radio" checked name="{$config.show_goodsweight.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_goodsweight.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_goodsweight.value" value="1">
+            	<input type="radio" checked name="{$config.show_goodsweight.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_goodsweight.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_goodsnumber.name}:</td>
+        <td>
+        	<eq name="config.show_goodsnumber.value" value="0">
+            	<input type="radio" checked name="{$config.show_goodsnumber.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_goodsnumber.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_goodsnumber.value" value="1">
+            	<input type="radio" checked name="{$config.show_goodsnumber.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_goodsnumber.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_addtime.name}:</td>
+        <td>
+        	<eq name="config.show_addtime.value" value="0">
+            	<input type="radio" checked name="{$config.show_addtime.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_addtime.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_addtime.value" value="1">
+            	<input type="radio" checked name="{$config.show_addtime.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_addtime.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.goodsattr_style.name}:</td>
+        <td>
+        	<eq name="config.goodsattr_style.value" value="0">
+            	<input type="radio" checked name="{$config.goodsattr_style.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.goodsattr_style.code}" value="0" />
+			</eq>下拉列表	
+			<eq name="config.goodsattr_style.value" value="1">
+            	<input type="radio" checked name="{$config.goodsattr_style.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.goodsattr_style.code}" value="1" />
+			</eq>单选按钮
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_marketprice.name}:</td>
+        <td>
+        	<eq name="config.show_marketprice.value" value="0">
+            	<input type="radio" checked name="{$config.show_marketprice.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_marketprice.code}" value="0" />
+			</eq>不显示		
+			<eq name="config.show_marketprice.value" value="1">
+            	<input type="radio" checked name="{$config.show_marketprice.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_marketprice.code}" value="1" />
+			</eq>显示
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,390 @@
+<table width="90%" id="shipping_flow-table" style="display:none">
+    <tr>
+        <td class="label" valign="top">{$config.can_invoice.name}:</td>
+        <td>
+        	<eq name="config.can_invoice.value" value="0">
+            	<input type="radio" checked name="{$config.can_invoice.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.can_invoice.code}" value="0" />
+			</eq>不使用
+			<eq name="config.can_invoice.value" value="1">
+            	<input type="radio" checked name="{$config.can_invoice.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.can_invoice.code}" value="1" />
+			</eq>使用<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.use_integral.name}:</td>
+        <td>
+        	<eq name="config.use_integral.value" value="0">
+            	<input type="radio" checked name="{$config.use_integral.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.use_integral.code}" value="0" />
+			</eq>不使用	
+			<eq name="config.use_integral.value" value="1">
+            	<input type="radio" checked name="{$config.use_integral.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.use_integral.code}" value="1" />
+			</eq>使用
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.use_bonus.name}:</td>
+        <td>
+        	<eq name="config.use_bonus.value" value="0">
+            	<input type="radio" checked name="{$config.use_bonus.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.use_bonus.code}" value="0" />
+			</eq>不使用	
+			<eq name="config.use_bonus.value" value="1">
+            	<input type="radio" checked name="{$config.use_bonus.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.use_bonus.code}" value="1" />
+			</eq>使用<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.use_surplus.name}:</td>
+        <td>
+        	<eq name="config.use_surplus.value" value="0">
+            	<input type="radio" checked name="{$config.use_surplus.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.use_surplus.code}" value="0" />
+			</eq>不使用	
+			<eq name="config.use_surplus.value" value="1">
+            	<input type="radio" checked name="{$config.use_surplus.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.use_surplus.code}" value="1" />
+			</eq>使用<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.use_how_oos.name}:</td>
+        <td>
+        	<eq name="config.use_how_oos.value" value="0">
+            	<input type="radio" checked name="{$config.use_how_oos.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.use_how_oos.code}" value="0" />
+			</eq>不使用	
+			<eq name="config.use_how_oos.value" value="1">
+            	<input type="radio" checked name="{$config.use_how_oos.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.use_how_oos.code}" value="1" />
+			</eq>使用<br>
+			<span class="notice-span">使用缺货处理时前台订单确认页面允许用户选择缺货时处理方法，此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.send_confirm_email.name}:</td>
+        <td>
+        	<eq name="config.send_confirm_email.value" value="0">
+            	<input type="radio" checked name="{$config.send_confirm_email.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.send_confirm_email.code}" value="0" />
+			</eq>不发送邮件	
+			<eq name="config.send_confirm_email.value" value="1">
+            	<input type="radio" checked name="{$config.send_confirm_email.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.send_confirm_email.code}" value="1" />
+			</eq>发送邮件
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.send_ship_email.name}:</td>
+        <td>
+        	<eq name="config.send_ship_email.value" value="0">
+            	<input type="radio" checked name="{$config.send_ship_email.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.send_ship_email.code}" value="0" />
+			</eq>不发送邮件	
+			<eq name="config.send_ship_email.value" value="1">
+            	<input type="radio" checked name="{$config.send_ship_email.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.send_ship_email.code}" value="1" />
+			</eq>发送邮件
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.send_cancel_email.name}:</td>
+        <td>
+        	<eq name="config.send_cancel_email.value" value="0">
+            	<input type="radio" checked name="{$config.send_cancel_email.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.send_cancel_email.code}" value="0" />
+			</eq>不发送邮件	
+			<eq name="config.send_cancel_email.value" value="1">
+            	<input type="radio" checked name="{$config.send_cancel_email.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.send_cancel_email.code}" value="1" />
+			</eq>发送邮件
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.send_invalid_email.name}:</td>
+        <td>
+        	<eq name="config.send_invalid_email.value" value="0">
+            	<input type="radio" checked name="{$config.send_invalid_email.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.send_invalid_email.code}" value="0" />
+			</eq>不发送邮件	
+			<eq name="config.send_invalid_email.value" value="1">
+            	<input type="radio" checked name="{$config.send_invalid_email.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.send_invalid_email.code}" value="1" />
+			</eq>发送邮件
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_pay_note.name}:</td>
+        <td>
+        	<eq name="config.order_pay_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_pay_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_pay_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_pay_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_pay_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_pay_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_unpay_note.name}:</td>
+        <td>
+        	<eq name="config.order_unpay_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_unpay_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_unpay_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_unpay_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_unpay_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_unpay_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_ship_note.name}:</td>
+        <td>
+        	<eq name="config.order_ship_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_ship_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_ship_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_ship_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_ship_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_ship_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_receive_note.name}:</td>
+        <td>
+        	<eq name="config.order_receive_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_receive_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_receive_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_receive_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_receive_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_receive_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_unship_note.name}:</td>
+        <td>
+        	<eq name="config.order_unship_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_unship_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_unship_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_unship_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_unship_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_unship_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_return_note.name}:</td>
+        <td>
+        	<eq name="config.order_return_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_return_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_return_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_return_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_return_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_return_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_invalid_note.name}:</td>
+        <td>
+        	<eq name="config.order_invalid_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_invalid_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_invalid_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_invalid_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_invalid_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_invalid_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.order_cancel_note.name}:</td>
+        <td>
+        	<eq name="config.order_cancel_note.value" value="0">
+            	<input type="radio" checked name="{$config.order_cancel_note.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.order_cancel_note.code}" value="0" />
+			</eq>无需填写备注	
+			<eq name="config.order_cancel_note.value" value="1">
+            	<input type="radio" checked name="{$config.order_cancel_note.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.order_cancel_note.code}" value="1" />
+			</eq>必须填写备注<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.invoice_content.name}:</td>
+        <td>
+            <textarea name="{$config.invoice_content.code}" cols="40" rows="5">{$config.invoice_content.value}</textarea><br>
+			<span class="notice-span">客户要求开发票时可以选择的内容。例如：办公用品。每一行代表一个选项，此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.anonymous_buy.name}:</td>
+        <td>
+        	<eq name="config.anonymous_buy.value" value="0">
+            	<input type="radio" checked name="{$config.anonymous_buy.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.anonymous_buy.code}" value="0" />
+			</eq>不允许	
+			<eq name="config.anonymous_buy.value" value="1">
+            	<input type="radio" checked name="{$config.anonymous_buy.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.anonymous_buy.code}" value="1" />
+			</eq>允许<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.min_goods_amount.name}:</td>
+        <td>
+            <input name="{$config.min_goods_amount.code}" type="text" value="{$config.min_goods_amount.value}" size="40" /><br>
+			<span class="notice-span">达到此购物金额，才能提交订单。</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.one_step_buy.name}:</td>
+        <td>
+        	<eq name="config.one_step_buy.value" value="0">
+            	<input type="radio" checked name="{$config.one_step_buy.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.one_step_buy.code}" value="0" />
+			</eq>否	
+			<eq name="config.one_step_buy.value" value="1">
+            	<input type="radio" checked name="{$config.one_step_buy.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.one_step_buy.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<!--<tr>
+        <td class="label" valign="top">{$config.invoice_type.name}:</td>
+        <td>
+            
+        </td>
+    </tr>-->
+	<tr>
+        <td class="label" valign="top">{$config.stock_dec_time.name}:</td>
+        <td>
+        	<eq name="config.stock_dec_time.value" value="0">
+            	<input type="radio" checked name="{$config.stock_dec_time.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.stock_dec_time.code}" value="0" />
+			</eq>发货时	
+			<eq name="config.stock_dec_time.value" value="1">
+            	<input type="radio" checked name="{$config.stock_dec_time.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.stock_dec_time.code}" value="1" />
+			</eq>下订单时<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.cart_confirm.name}:</td>
+        <td>
+        	<eq name="config.cart_confirm.value" value="0">
+            	<input type="radio" checked name="{$config.cart_confirm.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.cart_confirm.code}" value="0" />
+			</eq>否
+			<eq name="config.cart_confirm.value" value="1">
+            	<input type="radio" checked name="{$config.cart_confirm.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.cart_confirm.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">网店信息中的客服邮件地址不为空时，该选项有效。此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_goods_in_cart.name}:</td>
+        <td>
+        	<eq name="config.show_goods_in_cart.value" value="0">
+            	<input type="radio" checked name="{$config.show_goods_in_cart.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_goods_in_cart.code}" value="0" />
+			</eq>只显示文字
+			<eq name="config.show_goods_in_cart.value" value="1">
+            	<input type="radio" checked name="{$config.show_goods_in_cart.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_goods_in_cart.code}" value="1" />
+			</eq>只显示图片
+			<eq name="config.show_goods_in_cart.value" value="2">
+            	<input type="radio" checked name="{$config.show_goods_in_cart.code}" value="2" />
+			<else />
+				<input type="radio" name="{$config.show_goods_in_cart.code}" value="2" />
+			</eq>显示文字与图片<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+	<tr>
+        <td class="label" valign="top">{$config.show_attr_in_cart.name}:</td>
+        <td>
+        	<eq name="config.show_attr_in_cart.value" value="0">
+            	<input type="radio" checked name="{$config.show_attr_in_cart.code}" value="0" />
+			<else />
+				<input type="radio" name="{$config.show_attr_in_cart.code}" value="0" />
+			</eq>否
+			<eq name="config.show_attr_in_cart.value" value="1">
+            	<input type="radio" checked name="{$config.show_attr_in_cart.code}" value="1" />
+			<else />
+				<input type="radio" name="{$config.show_attr_in_cart.code}" value="1" />
+			</eq>是<br>
+			<span class="notice-span">此功能还没有启用</span>	
+        </td>
+    </tr>
+</table>

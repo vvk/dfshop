@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/goods.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="myCart">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>我的购物车</span>
+		</div>
+        
+        <div class="process">
+            <span class="process1 left">我的购物车</span>
+            <span class="process2 left">确认订单信息</span>
+            <span class="process3 left">提交订单成功</span>
+        </div>
+        
+        <div class="cartBox">
+            <div class="cartTitle">
+                <span class="">商品列表</span>
+            </div>
+            <form action='/Cart/saveCart' method='post'>
+            <table border="0" cellspace="0">
+                <tr>
+                    <th style="border-left:1px dotted #ddd;">商品名称</th>
+                    <th>商品图片</th>
+                    <th>本店价</th>
+                    <th>市场价</th>
+                    <th>购买数量</th>
+                    <th>小计</th>
+                    <th style="border-right:1px dotted #ddd;">操作</th>
+                </tr>
+                <if condition="$cart">
+                	<volist name='cart' id='vo'>
+                		<tr id='{$vo.id}'>
+		                    <td style="border-left:1px dotted #ddd;"><a href="/Goods/index/id/{$vo.id}" title='{$vo.goods_name}' target="_blank">{$vo.goods_name}</a></td>
+		                    <td><a href="/Goods/index/id/{$vo.id}" title='{$vo.goods_name}' target="_blank" style='width:70px;height:70px;overflow:hidden;display:inline-block;margin-bottom:10px'>
+		                        <img src="{$host}{$vo.goods_thumb}"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" class='transitionAll'/></a></td>
+		                    <td>￥{$vo.shop_price}</td>
+		                    <td>￥{$vo.market_price}</td>
+		                    <td><input type="text" name="cart_{$vo.id}" value="{$vo.goods_number}" /></td>
+		                    <td>￥{$vo.money}</td>
+		                    <td style="border-right:1px dotted #ddd;"><a href="javascript:void(0)" onclick="collect({$vo.goods_id})" title='收藏'>收藏</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="javascript:void(0)" title='删除' onclick="delCartGoods({$vo.id})">删除</a></td>
+		                </tr>
+					</volist>
+				
+				<else/>
+					<tr style='height:40px;'><td colspan='7' align='center'>您的购物车中还没有商品</td></tr>
+				</if>
+            </table>
+            <input type='submit' id='saveCart' value='更新购物车'/>
+			</form>
+            <div class="button">            	
+                <a href="/" class="left" style="margin-left: 30px;">继续购物</a>
+                <a href="/confirmOrder.html" class="right" style="margin-right: 30px;"/>去结算</a>
+            </div>
+        </div>
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>
+

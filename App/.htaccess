@@ -1,0 +1,38 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1
+
+
+RewriteRule ^/goods-([\d]+)\.html           index\.php/Goods/index/id/$1 [QSA,L]
+RewriteRule ^/login\.html           		index\.php/User/login [QSA,L]
+RewriteRule ^/register\.html           		index\.php/User/register [QSA,L]
+
+RewriteRule ^/article\.html           		index\.php/Article [QSA,L]
+RewriteRule ^/article-list-([\d]+)\.html    index\.php/Article/index/id/$1 [QSA,L]
+RewriteRule ^/article-([\d]+)\.html         index\.php/Article/article/id/$1 [QSA,L]
+
+RewriteRule ^/category-([\d]+)\.html         index\.php/Category/index/id/$1 [QSA,L]
+RewriteRule ^/category-([\d]+)-tree\.html    index\.php/Category/index/id/$1/categoryTree [QSA,L]
+RewriteRule ^/category-([\d]+)-([\d]+)\.html index\.php/Category/index/id/$1/p/$2 [QSA,L]
+
+index.php/Category/index/id/1/p/2.html
+
+RewriteRule ^/search-(.+)\.html    index\.php/Search/index/search/$1 [QSA,L]
+
+
+
+RewriteRule ^/user\.html         index\.php/User/index [QSA,L]
+RewriteRule ^/order\.html        index\.php/User/order [QSA,L]
+RewriteRule ^/address\.html      index\.php/User/address [QSA,L]
+RewriteRule ^/collect\.html      index\.php/User/collect [QSA,L]
+RewriteRule ^/forgetPwd\.html    index\.php/User/forgetPwd [QSA,L]
+RewriteRule ^/checkQuestion\.html    index\.php/User/checkQuestion [QSA,L]
+RewriteRule ^/resetPwd\.html    index\.php/User/resetPwd [QSA,L]
+RewriteRule ^/resetPassword\.html    index\.php/User/resetPassword [QSA,L]
+RewriteRule ^/centerOrderInfo-([\d]+)\.html    index\.php/User/centerOrderInfo/id/$1 [QSA,L]
+
+
+
+RewriteRule ^/cart\.html         index\.php/Cart [QSA,L]
+RewriteRule ^/confirmOrder\.html index\.php/Cart/confirmOrder [QSA,L]

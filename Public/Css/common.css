@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+*{paddding:0;margin:0;font-size:12px;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+li{ list-style-type:none;}
+
+.left{float:left;}
+.right{float:right}
+.clear{clear:both}

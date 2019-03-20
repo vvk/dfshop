@@ -1,0 +1,30 @@
+.main{width:1000px;margin:0 auto;}
+
+.floor2{margin-top:20px;margin-bottom:20px;}
+.floor2 .floor2Title{height:37px;width:100%;background:#E60012}
+.floor2 .floor2Title li{display:inline-block;width:250px;line-height:37px;height:37px;float:left;text-align:center;font-size:14px;font-family:'微软雅黑';cursor:pointer;color:#fff;}
+.floor2 .floor2Title .item{width:250px;font-size:16px;background:url(../Images/common.png) no-repeat 0 -38px;margin-top:-3px;}
+.floorGoods{width:100%;overflow:hidden;}
+.floor2 .floorGoods{width:100%;overflow:hidden;height:295px;}
+.floorGoods li{width:248px;float:left;display:inline-block;text-align:center;margin-bottom:20px;border:1px solid #fff;}
+/*.floorGoods li:hover{width:248px;border:1px solid red;}*/
+.floorGoods li dl{display:inline-block;margin-top:20px;width:200px;}
+.floorGoods li dd{height:200px;width:200px;overflow:hidden;}
+.floorGoods li dd img{width:200px;height:200px;}
+.floorGoods li dt {margin-top:10px;}
+.floorGoods li dt p{line-height:20px;text-align:center;font-family:Arial,Verdana}
+.floorGoods li dt .price{text-align:left;}
+.floorGoods li dt .shop_price{color:#666;}
+.floorGoods li dt .shop_price em{font-style:normal;color:red;font-weight:bold;font-size:16px;}
+.floorGoods li dt .market_price{text-decoration:line-through;color:#999;margin-left:20px;height;20px;line-height:20px;display:inline-block;}
+.floorGoods li dt .saleNum{text-align:left;color:#666}
+.floorGoods li dt .saleNum span{color:red}
+/*.floorGoods li:hover{box-shadow:#f00 0 0 15px;}*/
+
+.floor3{width:0 auto;overflow:hidden;}
+.floorTitle{height:45px;line-height:45px;background:#E60012;color:#fff;font-size:16px;font-family:'微软雅黑';padding-left:20px;}
+.floorTitle a{float:right;color:#fff;margin-right:20px;font-size:12px;font-family: Arial,SimSun,Tahoma,Helvetica,sans-serif;}
+.floorTitle span{height:45px;line-height:45px;color:#fff;font-size:16px;font-family:'微软雅黑';padding-left:30px;}
+.mobile{background:url(../Images/mobile.png) no-repeat left center}
+.computer{background:url(../Images/computer.png) no-repeat left center;padding-left:35px !important}
+.camera{background:url(../Images/camera.png) no-repeat left center;padding-left:35px !important}

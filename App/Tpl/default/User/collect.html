@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="collect">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        
+        <div class="collectBox">
+            <div class="userCenterTitle"><span>我的收藏</span></div>
+                
+            <div class="collectCon">    
+                <table border='0' cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th>商品名称</th>
+                        <th>商品单价</th>
+                        <th>收藏时间</th>
+                        <th>操作</th>
+                    </tr>
+                   <if condition="$count eq 0"> 
+                    <tr class="noCollect">
+                        <td colspan="4">暂无收藏商品</td>
+                    </tr>
+                    </if>
+                
+                    <volist name='collect' id='vo'>
+                    <tr>
+                        <td><a href="/goods-{$vo.goods_id}.html" title="{$vo.goods_name}" target="_blank">{$vo.goods_name}</a></td>
+                        <td title="本店售价">{$vo.price}</td>
+                        <td>{$vo.time}</td>
+                        <td>
+                            <a href="javascript:void(0)" title="加入购物车" onclick="addCart({$vo.goods_id})">加入购物车</a>
+                            <a href="javascript:void(0)" title="删除商品" onclick="delCollectGoods({$vo.id})">删除</a>                            
+                        </td>
+                    </tr>
+                    </volist>
+                </table>
+                <if condition="$count gt 0"> <div class="page2">{$page_list}</div></if>
+            </div>
+        </div>
+    </div>    
+	<include file="Public:footer" />
+</body>
+</html>

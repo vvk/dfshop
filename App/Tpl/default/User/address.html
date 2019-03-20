@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/time-plug-in.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/user.js"></script>
+	<title>{$web_title}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="address">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>用户中心</span>
+		</div>
+        <div><include file='leftNav' /></div>
+        <div class="addressCon">
+           <div class="userCenterTitle"><span>收货地址</span></div>
+           
+           <div class="addressList">
+                <form action="__APP__/User/saveAddress" method="post" onsubmit="return checkAddress()">
+                <dl class="zone">
+                    <dt>配送地区：</dt>
+                    <dd>
+                       <select name="province" id="province" onchange="regionChange(this.value,1)">
+                           {$address.provinceRetion}
+                       </select> 
+                       
+                       <select name="city" id="city"  onchange="regionChange(this.value,2)">
+                             {$address.cityRegion}
+                       </select> 
+                       
+                       <select name="district" id="district">
+                            {$address.districtRegion}
+                       </select> 
+                    </dd>
+                </dl>
+                
+                <dl>
+                    <dt>收货人姓名：</dt>
+                    <dd><input type="text" name="consignee" value="{$address.consignee}" id="consignee"/></dd>
+                </dl>
+                <dl>
+                    <dt>邮箱：</dt>
+                    <dd><input type="text" name="email" value="{$address.email}" id="email"/></dd>
+                </dl>
+                <dl>
+                    <dt>手机：</dt>
+                    <dd><input type="text" name="phone" value="{$address.phone}" id="phone"/></dd>
+                </dl>
+                <dl>
+                    <dt>邮政编码：</dt>
+                    <dd><input type="text" name="zipcode" value="{$address.zipcode}" id="zipcode"/></dd>
+                </dl>
+                <dl class='detailedAddress'>
+                    <dt>详细信息：</dt>
+                    <dd><textarea name="address" id="detailedAddress">{$address.address}</textarea></dd>
+                </dl>
+                <div class="button">
+                    <input type="hidden" name="id" value="{$address.id}"/>
+                    <input type="submit" name="save" class="saveBtn" value="保存" />
+                    <input type="reset" class="delBtn" value="重置" /> 
+                </div>
+                </form>
+           </div>
+        </div>
+    </div>    
+
+    
+    
+	<include file="Public:footer" />
+</body>
+</html>
+

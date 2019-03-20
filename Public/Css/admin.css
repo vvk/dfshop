@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+.page p{height:25px;line-height:25px;background:#ffffff;text-align:right;margin-right:20px;}
+.page p a{display:inline-block;border:1px solid #98C1CB;height:25px;line-height:25px;padding-left:8px;padding-right:8px;margin-left:5px;margin-right:5px;text-decoration:none !important;}
+.page p span{display:inline-block;border:1px solid #EEF8F9;height:25px;line-height:25px;padding-left:8px;padding-right:8px;}
+.page p a:hover{background:#BBDDE5;color:#fff;}

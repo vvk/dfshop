@@ -1,0 +1,99 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+td{text-align:center;}
+</style>
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+		<tr>
+			<th>编号</th>
+			<th>会员名称</th>
+			<th>邮件地址</th>
+			<th>性别</th>
+			<th>上次登录时间</th>
+			<th>注册时间</th>
+			<th>积分</th>
+			<th>是否启用</th>
+			<th>操作</th>
+		</tr>
+		<if condition="$users neq ''">
+			<volist name="users" id='vo'>
+				<tr id="{$vo.id}">
+					<td>{$vo.id}</td>
+					<td>{$vo.user_name}</td>
+					<td>{$vo.email}</td>
+					<td>{$vo.sex}</td>
+					<td>{$vo.last_login_time}</td>					
+					<td>{$vo.reg_time}</td>
+					<td>{$vo.integral}</td>
+					<td>
+						<if condition="$vo.enabled eq 0">
+					     <img src="__PUBLIC__/Images/yes.gif" title="点击修改" style="cursor:pointer;" onclick="enabledUser(this,{$vo.id})"/>
+						<else />
+							 <img src="__PUBLIC__/Images/no.gif" title="点击修改" style="cursor:pointer;" onclick="enabledUser(this,{$vo.id})"/>
+						</if>
+					</td>
+					<td>
+						<a href="__APP__/User/userInfo/id/{$vo.id}" title="编辑"><img src="__PUBLIC__/Images/icon_edit.gif" /></a>
+						<a href="javascript:void(0)" onclick="del_user({$vo.id})" title="删除"><img src="__PUBLIC__/Images/icon_drop.gif" /></a>
+					</td>
+				</tr>
+			</volist>
+		<else />
+			<tr><td colspan='9' align="center">没有查询到任何记录</td></tr>
+		</if>
+		<tr><td colspan='9'><div class="page"><p>{$page_list}</p></div>	</td></tr>
+	</table>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	//删除会员
+	function del_user(id){
+		var con = confirm('确定要删除吗?');
+		if(!con){
+			return;
+		}
+
+		loading();
+		var url = "__APP__/User/delUser";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '1'){
+				$('#'+id).remove();
+				complete_loading();
+				window.location.reload();
+			}else{
+				alert('删除失败');
+				complete_loading();
+			}
+		},'TEXT');
+	}
+	
+	function enabledUser(obj, id){
+		loading();
+		var url = "__APP__/User/enabledUser";
+		var data = {id:id};
+		$.post(url, data, function(data){
+			if(data == '2'){
+				var reg = /yes/;
+				if(reg.test(obj.src)){
+					obj.src = '__PUBLIC__/Images/no.gif';
+				}else{
+					obj.src = '__PUBLIC__/Images/yes.gif';
+				}
+				complete_loading();
+			}else{
+				complete_loading();
+				if(data == 0){
+					alert('操作失败');
+				}else if(data == 1){
+					alert('文章不存在');
+					window.location.reload();
+				}	
+			}
+		},'TEXT');	
+	}
+	
+
+
+</script>
+

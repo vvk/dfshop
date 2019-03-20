@@ -1,0 +1,87 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+.button{background:url(__PUBLIC__/Images/button_bg.gif) repeat-x}
+</style>
+<div class="main-div">
+	<form action="__APP__/System/saveFlink" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return check()">
+		<table width="100%" id="general-table">
+			 <tr>
+    			<td class="label">链接名称：</td>
+    			<td><input type="text" name="link_name" id='link_name' value="{$flink.link_name}" size="40"/></td>
+  			 </tr>
+			 <tr>
+    			<td class="label">链接地址：</td>
+    			<td><input type="text" name="link_url" value="{$flink.link_url}" size="40"/></td>
+  			 </tr>
+			 <tr>
+    			<td class="label">显示顺序：</td>
+    			<td><input type="text" name="sort_order" value="{$flink.sort_order}" size="10"/></td>
+  			 </tr>
+			 <tr>
+    			<td class="label">链接LOGO：</td>
+    			<td>
+    				<input type="file" name="link_logo" value=""/>
+					<if condition="$flink.link_logo neq ''">
+						<img src="__PUBLIC__/Images/yes.gif" style="padding-right:15px;"/>
+						<img src="__PUBLIC__/Images/icon_trash.gif" style="cursor:pointer;" onclick="del_img({$flink.id})" />
+					<else />
+					     <img src="__PUBLIC__/Images/no.gif" />
+					</if>
+				</td>
+  			 </tr>
+			 <tr>
+			 	<td class="label">是否显示：</td>
+				<td>
+					<if condition="$flink.is_show eq 0">
+						<input type='radio' name='is_show' value='0' checked>否
+					<else />
+						<input type='radio' name='is_show' value='0' >否
+					</if>
+					<if condition="$flink.is_show eq 1">
+						<input type='radio' name='is_show' value='1' checked>是
+					<else />
+						<input type='radio' name='is_show' value='1' >是
+					</if>
+				</td>	
+			 </tr>
+			 <tr>
+			    <td class="label">&nbsp;</td>
+			    <td>
+			      <input type="hidden" name="action" value="{$action}" />
+			      <input type="hidden" name="id" value="{$flink.id}" />
+			      <input type="reset" value="重置" class="button" />
+			      <input type="submit" value="提交" class="button" />
+			    </td>
+			 </tr>
+		</table>
+	</form>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript">
+	//删除图片
+	function del_img(id){
+		var con = confirm('确定要删除吗?');
+		if(!con){
+			return;
+		}
+		
+	}
+
+	function check(){
+		var name = $('#link_name').val();
+		if(!name){
+			alert('链接名称不能为空');
+			return false;
+		}		
+	}
+	
+
+
+
+
+
+
+
+</script>
+
+

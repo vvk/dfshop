@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<title>{$shop_name}</title>
+	<style type='text/css'>
+		.msg{height:100px;width:1000px;margin:0 auto;}
+		.msgInfo{text-align:center;margin-top:50px;font-family: '微软雅黑'; color: #f00; font-size: 16px;font-weight:bold}
+		.jump{text-align:center;padding-top: 10px}
+	</style>
+</head>
+<body>
+	<include file="Public:header" />
+		<div class='msg'>
+			<p class='msgInfo'>{$message}{$error}</p>
+			<p class='jump'>页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+			</p>
+		</div>
+
+	<include file="Public:footer" />
+	<script type="text/javascript">
+		(function(){
+			$('.navBox li').removeClass('currentNav');
+			var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+			var interval = setInterval(function(){
+				var time = --wait.innerHTML;
+				if(time == 0) {
+					location.href = href;
+					clearInterval(interval);
+				};
+			}, 1000);
+		})();
+	</script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,175 @@
+<include file="Public:pageheader" />
+<style type="text/css">
+#noticeRankPoints{color:red;}
+.button{background:url(__PUBLIC__/Images/button_bg.gif) repeat-x;}
+</style>
+<div class="main-div">
+	<form method="post" action="__APP__/User/saveUser" name="theForm" onsubmit="return check()">
+		<table width="100%" >
+			<tr>
+   				<td class="label">会员名称:</td>
+    			<td>
+					<input type="text" name="user_name" id='user_name' maxlength="60" value="{$user.user_name}" />
+					<span class="notice-span" id="noticeRankPoints">*</span>
+ 			 </tr>
+			 <tr>
+				<td class="label">
+				<if condition="$user.id neq 0">
+					新密码:
+				<else />
+					密码:
+				</if>	
+					
+				</td>
+				<td>
+					<input type="password" id='password' name="password" value="" maxlength="20" size="20" />
+					<span class="notice-span" id="noticeRankPoints">*</span>
+				</td>
+			 </tr>
+			 <tr>
+				<td class="label">确认密码:</td>
+				<td>
+					<input type="password" id='repassword' name="repassword" value="" maxlength="20" size="20" />
+					<span class="notice-span" id="noticeRankPoints">*</span>
+				</td>
+			 </tr>
+			 <tr>
+			 	<td class="label">邮箱:</td>
+				<td>
+					<input type="text" name="email" id='email' maxlength="60" size="40" value="{$user.email}" />
+					<span class="notice-span" id="noticeRankPoints">*</span>
+				</td>
+			 </tr>
+			 <tr>
+			 	<td class="label">出生日期:</td>	
+				<td>
+					<select name="year" id='year' onchange="date_change()">{$year}</select>
+					<select name="month" id='month' onchange="date_change()">{$month}</select>
+					<select name="day" id='day'>{$day}</select>
+				</td>
+			 </tr>
+			 <tr>
+			 	<td class="label">性别:</td>	
+				<td>
+					<if condition="$user.sex eq 0">
+						<input type="radio" name='sex' value='0' checked>保密&nbsp;&nbsp;&nbsp;
+					<else />
+						<input type="radio" name='sex' value='0'>保密&nbsp;&nbsp;&nbsp;
+					</if>
+					<if condition="$user.sex eq 1">
+						<input type="radio" name='sex' value='1' checked>男&nbsp;&nbsp;&nbsp;
+					<else />
+						<input type="radio" name='sex' value='1'>男&nbsp;&nbsp;&nbsp;
+					</if>
+					<if condition="$user.sex eq 2">
+						<input type="radio" name='sex' value='2' checked>女&nbsp;&nbsp;&nbsp;
+					<else />
+						<input type="radio" name='sex' value='2'>女&nbsp;&nbsp;&nbsp;
+					</if>
+				</td>
+			 </tr>
+			 <tr>
+			 	<td class="label">QQ:</td>
+				<td>
+					<input type="text" name="qq" size="20" id='qq' value="{$user.qq}" />
+				</td>
+			</tr>
+			<tr>
+			 	<td class="label">手机:</td>
+				<td>
+					<input type="text" name="phone" id="phone" size="20" value="{$user.phone}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="narrow-label">是否启用:</td>
+				<td>
+					<if condition="$user.enabled eq 1 ">
+						<input type="radio" name='enabled' value='1' checked>
+					<else />
+						<input type="radio" name='enabled' value='1'>
+					</if>否
+					<if condition="$user.enabled eq 0 ">
+						<input type="radio" name='enabled' value='0' checked>
+					<else />
+						<input type="radio" name='enabled' value='0'>
+					</if>是
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+			        <input type="hidden" name="action" id="action" value="{$action}" />
+			        <input type="hidden" name="id" value="{$user.id}" /> 
+					<input type="reset" value="重置" class="button" />   
+					<input type="submit" value="确定" class="button" />			        
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<include file="Public:pagefooter" />
+<script type="text/javascript" src="__PUBLIC/Js/admin.date.js"></script>
+<script type="text/javascript">
+	function date_change(){
+		var month = $('#month').val();
+		var year = $('#year').val();
+		var day = getDaysInMonth(year, month);
+		var option = '';
+		for(var i=1; i<=day;i++){
+			option += "<option value='"+i+"'>"+i+"</option>"; 
+		}
+		$('#day').html(option);
+	}
+
+	function check(){
+		var user_name = $('#user_name').val();
+		var password = $('#password').val();
+		var repass = $('#repassword').val();
+		var email = $('#email').val();
+		var phone = $('#phone').val();
+		var action = $("#action").val();
+		
+		var msg = '';
+		if(!user_name){
+			msg += '用户名不能为空\n\r';
+		}
+		if (action != 'edit') {
+			if (!password) {
+				msg += '密码不能为空\n\r';
+			}
+			if (password && (password.length < 6 || password.length > 20)) {
+				msg += '密码长度为6-20位\n\r';
+			}
+			if (!repass) {
+				msg += '确认密码不能为空\n\r';
+			}
+			if (password && repass && password != repass) {
+				msg += '两次输入的密码不一致\n\r';
+			}
+		}else{
+			if(password){
+				if(!repass){
+					msg += "确认密码不能为空\n\r";
+				}else if(password != repass){
+					msg += '两次输入的密码不致\n\r';
+				}
+			}
+		}
+		if(!email){
+			msg += '邮箱不能为空\n\r';
+		}
+		if(email && !isMail(email)){
+			msg += '邮箱格式不正确\n\r';
+		}
+		if(phone && !isPhone(phone)){
+			msg += '手机号格式不正确\n\r';
+		}
+
+		if(msg.length>0){
+			alert(msg);
+			return false;
+		}
+	}
+
+
+</script>

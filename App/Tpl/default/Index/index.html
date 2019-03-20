@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="{$keywords}" />
+	<meta http-equiv="description" content="{$description}" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/index.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/dhk.css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.lazyload.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/index.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/banner.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/dhk.js"></script>
+	<title>{$web_title}</title>
+	<meta property="qc:admins" content="0011510633070631611006375" />
+	<meta property="wb:webmaster" content="bb228913ddf9074d" />
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("img.lazy").show().lazyload({ //页面加载完毕运行
+			effect : "fadeIn",         //淡入效果
+	　　　　　　　threshold : 100,        // 提前200像素加载
+	　　　　　　　failurelimit : 0,         //随机加载10张不在范围内图片
+	　　　　　　　skip_invisible : false      //设置为display：none 的图片 也加载   false否  True是
+		});
+		
+        //商店公告
+        onLoad(function (){
+        	initQuirkyPopup();
+        });
+	    $("img").lazyload({
+       		  event : "sporty"
+     	});
+	});
+	
+</script>
+<body>
+	<include file="Public:header" />
+	<div class="main">
+		<div class="floor1">
+			<include file='Public:category'/>  <!-- 分类树 -->
+			
+			<div class="floor1Con">
+				<div id="banner">
+					<ul id="bannerImg">
+                        <volist name='banner' id='vo'>
+                            <li><img src="{$host}{$vo.banner_url}" width='780' height='330' /></a></li>
+                        </volist>
+					</ul>
+					<ul id="imgNum">
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>	
+		
+		<div class="floor2">
+			<div class="floor2Title">
+				<ul>
+					<li class="item">新品上架</li>
+					<li>推荐商品</li>
+					<li>热销商品</li>
+				</ul>
+			</div>
+			<div class="floorGoods">
+				<!-- 新口上架 start -->
+				<ul id="newGoods">
+					<volist name='newGoods' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target='_blank'><img src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}" class='lazy transitionAll' title="{$vo.goods_name}" alt='{$vo.goods_name}'></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target='_blank' title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+				<!-- 新口上架 end -->
+				
+				<!-- 推荐商品 start --->
+				<ul id="recommendedGoods" style="display:none">
+					<volist name='recommendedGoods' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target='_blank'><img  class='lazy  transitionAll' data-original="{$host}{$vo.goods_thumb}" onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" src="__PUBLIC__/Images/grey.gif" alt='{$vo.goods_name}' title="{$vo.goods_name}"></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target='_blank' title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+				<!-- 推荐商品 end --->
+				
+				<!-- 热销商品 start -->
+				<ul id="hotGoods" style="display:none">
+					<volist name='hotGoods' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target='_blank'><img class='lazy  transitionAll' data-original="{$host}{$vo.goods_thumb}" onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" src="__PUBLIC__/Images/grey.gif" alt='{$vo.goods_name}' title="{$vo.goods_name}"></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target='_blank' title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+									<p class="saleNum">销量：<span>{$vo.sale_number}</span></p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+				<!-- 热销商品 end -->
+			</div>
+		</div>
+		
+		<div class=""floor3>
+			<div class="floorTitle"><span class="mobile">手机</span><a href='/category-1.html' target="_blank" title='more'>more</a></div>
+				<div class='floorGoods'>
+				<ul>
+					<volist name='phone' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target="_blank"><img src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" class='lazy  transitionAll' alt='{$vo.goods_name}' title="{$vo.goods_name}"></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target="_blank" title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+			</div>
+	</div>
+	
+		<div class=""floor5>
+			<div class="floorTitle"><span class="computer">电脑</span><a href='/category-2.html' target="_blank" title='more'>more</a></div>
+				<div class='floorGoods'>
+				<ul>
+					<volist name='computer' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target="_blank"><img src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" class='lazy  transitionAll' alt='{$vo.goods_name}' title="{$vo.goods_name}"></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target="_blank" title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+			</div>
+	</div>
+	
+	<div class=""floor5>
+			<div class="floorTitle"><span class="camera">相机</span><a href='/category-3.html' target="_blank" title='more'>more</a></div>
+				<div class='floorGoods'>
+				<ul>
+					<volist name='camera' id='vo'>
+						<li>
+							<dl>
+								<dd><a href="/goods-{$vo.id}.html" target="_blank"><img src="__PUBLIC__/Images/grey.gif" data-original="{$host}{$vo.goods_thumb}"  onerror="this.src='__PUBLIC__/Uploads/{$defaultGoodsImg}'" class='lazy  transitionAll' alt='{$vo.goods_name}' title="{$vo.goods_name}"></a></dd>
+								<dt>
+									<p><a href="/goods-{$vo.id}.html" target="_blank" title="{$vo.goods_name}"><if condition="$vo.goods_name|strlen gt '20'">{$vo.goods_name|mb_substr=###,0,19,'utf-8'}...<else/>{$vo.goods_name}</if></a></p>
+									<p class="price">
+										<span class='shop_price'>东方价：<em>￥{$vo.shop_price}</em></span>
+										<span class="market_price">￥{$vo.market_price}</span>	
+									</p>
+								</dt>
+							</dl>
+						</li>
+					</volist>
+				</ul>
+			</div>
+	</div>
+    
+    <!-- 商店公告start -->
+    <if condition="$shop_notice">
+    <div id="messageBoardContainer">
+      <div id="messageBoard"> ﻿
+        <div class="wrap">
+          <h2> <span>东方商城公告！！</span> <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a> </h2>
+          <div class="content" style="font-family:Arial;">
+            <p style="position:relative; top:-16px;padding-top:10px"><span>{$shop_notice}</span></p>
+          </div>
+        </div>
+        <div class="bg"></div>
+      </div>
+    </div>
+    <a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a> ﻿
+    </if>
+    <!-- 商店公告end -->
+    
+    
+	<script type="text/javascript">
+		$(function(){
+			
+			/*分类树*/
+			$(".floor1 .cat li[class='catList']").hover(function(){			
+				var k = $(".floor1 .cat li[class='catList']").index($(this));
+				var length = $(".floor1 .cat li[class='catList']").length;
+				if(k == 0){
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg2.png) no-repeat center center","border-right":"none"});
+				}else if(k == (length-1)){
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg3.png) no-repeat center center","border-right":"none"});
+				}else{
+					$(".floor1 .cat li[class='catList']").eq(k).css({"background":"url(__PUBLIC__/Images/bg1.png) no-repeat center center","border-right":"none"});	
+				}	
+				$(".floor1 .cat li[class='catList']").eq(k).children('span').css("background","url(__PUBLIC__/Images/arror02.png) no-repeat center center");
+				$(this).find(".subMenu").show()
+			},function(){
+				var k = $(".floor1 .cat li[class='catList']").index($(this));
+				$(".floor1 .cat li[class='catList']").eq(k).css({"background":"none","border-right":"2px solid #E60012"});		
+				$(".floor1 .cat li[class='catList']").eq(k).children('span').css("background","url(__PUBLIC__/Images/arror01.png) no-repeat center center");
+				$(this).find(".subMenu").hide();
+			});
+			
+			/*banner*/
+			var img = document.getElementById("bannerImg");
+			var num = document.getElementById("imgNum");
+			var ali = img.getElementsByTagName("li");
+			var oli = num.getElementsByTagName("li");
+			var time = null;
+			lanrenzhijiaing = document.getElementById("banner");
+			img.style.width = ali.length * 780 + "px", inow = 0;
+			for (var i = 0; i < oli.length; i++) {
+				oli[i].index = i;
+				oli[i].onmouseover = function() {
+					inow = this.index;
+					tab();
+					window.clearInterval(time);
+				}
+				oli[i].onmouseout = function() {
+					time = window.setInterval(autoPlay, 2000);
+				}
+			}			
+			function tab() {
+				for (var i = 0; i < oli.length; i++) {
+					oli[i].className = "";
+				}
+				oli[inow].className = "currentBanner";
+				startMove(img, {
+					left: -inow * 780
+				}, 'buffer')
+			}			
+			function autoPlay() {
+				inow++;
+				if (inow >= ali.length) {
+					inow = 0;
+				}
+				tab();
+			}
+			time = window.setInterval(autoPlay, 3000)})
+		
+			var bannerNum = $("#bannerImg li").length;
+			var str = '';
+			for(var i=0; i<bannerNum; i++){
+				if(i == 0){
+					str += "<li class='currentBanner'>"+(i+1)+"</li>";
+				}else{
+					str += "<li>"+(i+1)+"</li>";
+				}
+			}
+			$("#imgNum").append(str);
+	
+			$(".floor2Title li").mouseover(function(){
+				$(this).addClass("item").siblings().removeClass("item")
+				var k = $(".floor2Title li").index($(this));
+				if(k == 0){
+					$("#newGoods").css("display","").siblings().css("display","none");
+				}else if(k == 1){
+					$("#recommendedGoods").css("display","").siblings().css("display","none");
+				}else if(k == 2){
+					$("#hotGoods").css("display","").siblings().css("display","none");
+				}
+			});
+	</script>
+	<include file="Public:footer" />
+</body>
+</html>
+
+
+
+
+

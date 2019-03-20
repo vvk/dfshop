@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="keywords" content="" />
+	<meta http-equiv="description" content="" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/global.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/css.css" />
+	<link rel="Shortcut Icon" href="__PUBLIC__/Images/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Css/lanrenzhijia.css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/lanrenzhijia.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+	<title>{$web_title}--{$shop_name}</title>
+</head>
+
+<body>
+    <include file="Public:header" />
+        
+    <div class="submitOrder">
+        <div class="crumbs">
+			<a href="/" class="homePage ico">首页</a>><span>我的购物车</span>
+		</div>
+        
+        <div class="process">
+            <span class="process1">我的购物车</span>
+            <span class="process2">确认订单信息</span>
+            <span class="process3">提交订单成功</span>
+        </div>
+      
+        <div class="submitOrderCon">
+            <div class="success">
+                <p>恭喜您，您的订单已提交成功，您总共需要支付的金额<span>{$goods_amounts}元</span>。</p>
+                <p>在本次交易中，您共获得积分<span>{$gainIntegral}</span>。</p>
+            </div>
+            <!--<div class="fail">
+                <p>对不起，您的订单生成失败</p>
+            </div>-->
+            
+            <div class="button">
+                <a href="/">继续购物</a>
+                <div class='payBtn'>{$payment}</div>
+                <!--<a href="__APP__/Cart/confirmOrder">返回</a>-->
+            </div>
+        </div>
+    </div>
+    <include file="Public:footer" />
+</body>
+</html>
+
